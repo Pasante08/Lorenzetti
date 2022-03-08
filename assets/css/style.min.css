@@ -1856,6 +1856,10 @@ aside .banner {
     padding-right: 6px
 }
 
+.btn-whatsapp {
+    background: #00bb2d
+}
+
 .btn-facebook {
     background: #3a589d
 }
@@ -2758,6 +2762,10 @@ a:focus {
     content: '\f099'
 }
 
+.icon-whatsapp:before {
+    content: '\f232'
+}
+
 .icon-facebook:before {
     content: '\f09a'
 }
@@ -2825,6 +2833,7 @@ form h2 {
     font-family: "Open Sans", sans-serif;
     font-size: 1.2rem;
     font-weight: 400;
+    border-radius: 30px;
     line-height: 1.5
 }
 
@@ -3721,6 +3730,11 @@ span.page-link,
     text-transform: uppercase
 }
 
+.image-product {
+    width: 278px;
+    height: 278px;
+}
+
 .product-default {
     color: #777;
     margin-bottom: 2rem
@@ -3728,9 +3742,12 @@ span.page-link,
 
 .product-default a {
     color: inherit;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
+    display: flex;
+    word-break: break-word;
+    align-items: center
 }
 
 .product-default a:hover {
@@ -3818,7 +3835,12 @@ span.page-link,
     letter-spacing: .005em;
     margin-bottom: .72rem;
     text-overflow: ellipsis;
-    overflow: hidden
+    overflow: hidden;
+    padding: 0px 10px 10px 10px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    text-align: center
 }
 
 .product-default .tooltiptext {
@@ -3841,7 +3863,8 @@ span.page-link,
 
 .product-default .product-action {
     color: #333;
-    text-align: center
+    text-align: center;
+    margin: auto
 }
 
 .product-default .btn-icon-wish,
@@ -3951,10 +3974,11 @@ span.page-link,
 }
 
 .price-box {
-    margin-bottom: 1.5rem;
+    /*margin-bottom: 1.5rem;*/
     font-weight: 600;
     font-family: "Open Sans", sans-serif;
-    line-height: 1
+    line-height: 1;
+    margin: 0 auto 1.5rem auto;
 }
 
 .ratings-container {
@@ -5799,6 +5823,10 @@ span.page-link,
     opacity: .85
 }
 
+.social-icon.social-whatsapp {
+    background-color: #00bb2d
+}
+
 .social-icon.social-facebook {
     background-color: #3b5a9a
 }
@@ -6225,7 +6253,7 @@ a:focus {
 
 .section-title {
     text-transform: uppercase;
-    font-size: 1.8rem
+    font-size: 2.8rem
 }
 
 .section-sub-title {
@@ -6968,7 +6996,7 @@ header .separator {
     visibility: visible
 }
 
-.cart-dropdown:hover .dropdown-menu,
+/*.cart-dropdown:hover*/ .dropdown-menu,
 .compare-dropdown:hover .dropdown-menu {
     top: 100%;
     opacity: 1;
@@ -8014,7 +8042,7 @@ header .separator {
 footer {
     font-size: 1.3rem;
     color: #90969a;
-    line-height: 24px
+    line-height: 2.6rem
 }
 
 footer .container {
@@ -8040,7 +8068,16 @@ footer a:focus {
 }
 
 .footer-bottom {
-    padding-bottom: 3.2rem
+    color: #777;
+    border-top: 1px solid #313438;
+    padding-bottom: 2.5rem;
+    padding-top: 2.5rem
+}
+
+.footer .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
 }
 
 footer .social-icon {
@@ -8055,14 +8092,51 @@ footer .social-icon:not(:hover):not(:active):not(:focus) {
     background: transparent
 }
 
+.footer .social-icons {
+    margin-top: 2rem;
+}
+
 footer .widget {
     margin-bottom: 3rem
 }
 
 footer .widget-title {
-    font-size: 1.6rem;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
     text-transform: uppercase;
-    margin: 0 0 1.7rem
+    margin: 0 0 1.6rem
+}
+
+.footer .widget-newsletter form {
+    position: relative;
+    margin-bottom: 0;
+    max-width: 370px
+}
+
+.footer .widget-newsletter .form-control {
+    height: 4.8rem;
+    padding: 1.1rem 12.4rem 1.1rem 2rem;
+    margin-bottom: 1rem;
+    background-color: #292c30;
+    border-radius: 30px;
+    border: none
+}
+
+.footer .widget-newsletter .btn {
+    position: absolute;
+    min-width: 63px;
+    padding: 1.65rem 1.5rem;
+    top: 0;
+    right: 0;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1;
+    color: #fff;
+    background-color: #e13b3f;
+    border-radius: 0 30px 30px 0;
+    text-align: center
 }
 
 footer .tagcloud a {
@@ -8176,7 +8250,8 @@ footer .contact-info-label {
 }
 
 .footer {
-    line-height: 1.4
+    line-height: 1.4;
+    background-color: #222529
 }
 
 .footer-top .container:after {
@@ -11897,7 +11972,7 @@ section {
 }
 
 .section-title {
-    color: #302e2a
+    color: #d61921
 }
 
 .top-border:before {

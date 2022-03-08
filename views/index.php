@@ -44,224 +44,74 @@
         <!-- End .home-slider -->
 
         <section class="container">
-            <h2 class="section-title ls-n-10 text-center pt-2 m-b-4">CATEGORIAS</h2>
-        
-            <div class="owl-carousel owl-theme nav-image-center show-nav-hover nav-outer cats-slider">
-                <div class="product-category">
-                    <a href="category.html">
-                        <figure>
-                            <img src="assets/images/categories/ducha.jpg">
-                        </figure>
-                        <div class="category-content">
-                            <h3>Duchas electricas</h3>
-                            <!--<span><mark class="count">8</mark> products</span>-->
-                        </div>
-                    </a>
+            <h2 class="section-title ls-n-10 text-center pt-2 m-b-4">Categorias</h2>
+            <div class="row row-sm">
+            <?php foreach($categorias as $categoria) : ?>
+                <div class="col-6 col-sm-4 col-lg-3 mx-auto">
+                    <div class="product-category">
+                        <a href="#">
+                            <figure>
+                                <img src="<?php echo $categoria->ubicacion ?>" alt="<?php echo $categoria->imagen ?>">
+                            </figure>
+                            <div class="category-content">
+                                <h3><?php echo $categoria->nombre ?></h3>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="product-category">
-                    <a href="category.html">
-                        <figure>
-                            <img src="assets/images/categories/category-2.jpg">
-                        </figure>
-                        <div class="category-content">
-                            <h3>Purificadores</h3>
-                            <!--<span><mark class="count">4</mark> products</span>-->
-                        </div>
-                    </a>
-                </div>
-                <div class="product-category">
-                    <a href="category.html">
-                        <figure>
-                            <img src="assets/images/categories/870505.png">
-                        </figure>
-                        <div class="category-content">
-                            <h3>Filtros</h3>
-                            <!--<span><mark class="count">8</mark> products</span>-->
-                        </div>
-                    </a>
-                </div>
+                <?php endforeach ?>
             </div>
-        </section>
+            </section>
 
         <section class="container pb-3 mb-1">
             <h2 class="section-title ls-n-10 text-center pb-2 m-b-4">Productos destacados</h2>
 
-            <div class="row">
-                <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                    <div class="product-default inner-quickview inner-icon">
-                        <figure>
-                            <a href="product.html">
-                                <img src="assets/images/products/870618.jpg" width="500" height="500">
-                            </a>
-                            <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">Quick View</a>
-                        </figure>
-                        <div class="product-details">
-                            <div class="category-wrap">
+            <div class="product-intro owl-carousel owl-theme" data-toggle="owl" data-owl-options="{
+                        'margin': 20,
+                        'items': 2,
+                        'autoplayTimeout': 5000,
+                        'dots': false,
+                        'nav': true,
+                        'responsive': {
+                            '559': {
+                                'items': 3
+                            },
+                            '975': {
+                                'items': 4
+                            }
+                        }
+                    }">
+                    <?php foreach ($productos as $producto) : ?>
+                        <?php if($producto->estado == 'SI') : ?>
+                    <div class="product-default left-details">
+                            <figure>
+                                <a href="#">
+                                    <div class="image-product">
+                                        <img src="<?php echo $producto->ubicacion ?>" width="500" height="500">
+                                    </div>
+                                </a>
+                            </figure>
+                            <div class="product-details">
                                 <div class="category-list">
-                                    <a href="category.html" class="product-category">category</a>
                                 </div>
-                            </div>
-                            <h3 class="product-title">
-                                <a href="product.html">Product Short Name</a>
-                            </h3>
-                            <div class="ratings-container">
-                                <!-- End .product-ratings -->
-                            </div>
-                            <!-- End .product-container -->
-                            <div class="price-box">
-                                <span class="product-price">$49.00</span>
-                            </div>
-                            <!-- End .price-box -->
+                                <h2 class="product-title">
+                                    <a href="product.html"><?php echo $producto->nombre ?></a>
+                                </h2>
+                                <div class="ratings-container">
+                                </div><!-- End .product-container -->
+                                <div class="price-box">
+                                    <span class="product-price">$ <?php echo number_format($producto->precio) ?></span>
+                                </div><!-- End .price-box -->
+                                <div class="product-action">
+                                    <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i>AÑADIR A LA BOLSA</button> 
+                                </div>
+                            </div><!-- End .product-details -->
                         </div>
-                        <!-- End .product-details -->
-                    </div>
+                        <?php else : ?>
+                        <?php endif ?>
+                        <?php endforeach ?>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                    <div class="product-default inner-quickview inner-icon">
-                        <figure>
-                            <a href="product.html">
-                                <img src="assets/images/products/870518.jpg">
-                            </a>
-                            <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">Quick View</a>
-                        </figure>
-                        <div class="product-details">
-                            <div class="category-wrap">
-                                <div class="category-list">
-                                    <a href="category.html" class="product-category">category</a>
-                                </div>
-                            </div>
-                            <h3 class="product-title">
-                                <a href="product.html">Product Short Name</a>
-                            </h3>
-                            <div class="ratings-container">
-                                <!-- End .product-ratings -->
-                            </div>
-                            <!-- End .product-container -->
-                            <div class="price-box">
-                                <span class="product-price">$49.00</span>
-                            </div>
-                            <!-- End .price-box -->
-                        </div>
-                        <!-- End .product-details -->
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                    <div class="product-default inner-quickview inner-icon">
-                        <figure>
-                            <a href="product.html">
-                                <img src="assets/images/products/870544.jpg">
-                            </a>
-                            <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">Quick View</a>
-                        </figure>
-                        <div class="product-details">
-                            <div class="category-wrap">
-                                <div class="category-list">
-                                    <a href="category.html" class="product-category">category</a>
-                                </div>
-                            </div>
-                            <h3 class="product-title">
-                                <a href="product.html">Product Short Name</a>
-                            </h3>
-                            <div class="ratings-container">
-                                <!-- End .product-ratings -->
-                            </div>
-                            <!-- End .product-container -->
-                            <div class="price-box">
-                                <span class="product-price">$49.00</span>
-                            </div>
-                            <!-- End .price-box -->
-                        </div>
-                        <!-- End .product-details -->
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                    <div class="product-default inner-quickview inner-icon">
-                        <figure>
-                            <a href="product.html">
-                                <img src="assets/images/products/8699912.jpg">
-                            </a>
-                            <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">Quick View</a>
-                        </figure>
-                        <div class="product-details">
-                            <div class="category-wrap">
-                                <div class="category-list">
-                                    <a href="category.html" class="product-category">category</a>
-                                </div>
-                            </div>
-                            <h3 class="product-title">
-                                <a href="product.html">Product Short Name</a>
-                            </h3>
-                            <div class="ratings-container">
-                                <!-- End .product-ratings -->
-                            </div>
-                            <!-- End .product-container -->
-                            <div class="price-box">
-                                <span class="product-price">$49.00</span>
-                            </div>
-                            <!-- End .price-box -->
-                        </div>
-                        <!-- End .product-details -->
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                    <div class="product-default inner-quickview inner-icon">
-                        <figure>
-                            <a href="product.html">
-                                <img src="assets/images/products/8699882.jpg">
-                            </a>
-                            <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">Quick View</a>
-                        </figure>
-                        <div class="product-details">
-                            <div class="category-wrap">
-                                <div class="category-list">
-                                    <a href="category.html" class="product-category">category</a>
-                                </div>
-                            </div>
-                            <h3 class="product-title">
-                                <a href="product.html">Product Short Name</a>
-                            </h3>
-                            <div class="ratings-container">
-                                <!-- End .product-ratings -->
-                            </div>
-                            <!-- End .product-container -->
-                            <div class="price-box">
-                                <span class="product-price">$49.00</span>
-                            </div>
-                            <!-- End .price-box -->
-                        </div>
-                        <!-- End .product-details -->
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                    <div class="product-default inner-quickview inner-icon">
-                        <figure>
-                            <a href="product.html">
-                                <img src="assets/images/products/869918.jpg">
-                            </a>
-                            <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">Quick View</a>
-                        </figure>
-                        <div class="product-details">
-                            <div class="category-wrap">
-                                <div class="category-list">
-                                    <a href="category.html" class="product-category">category</a>
-                                </div>
-                            </div>
-                            <h3 class="product-title">
-                                <a href="product.html">Product Short Name</a>
-                            </h3>
-                            <div class="ratings-container">
-                                <!-- End .product-ratings -->
-                            </div>
-                            <!-- End .product-container -->
-                            <div class="price-box">
-                                <span class="product-price">$49.00</span>
-                            </div>
-                            <!-- End .price-box -->
-                        </div>
-                        <!-- End .product-details -->
-                    </div>
-                </div> 
-            </div>
+
 
             <hr class="mt-3 mb-6">
 
