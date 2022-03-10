@@ -28,15 +28,17 @@
 							<div class="sticky-slider">
 								<div class="product-slider-container">
 									<div class="product-single-carousel owl-carousel owl-theme">
-										<div class="product-item">
-											<img class="product-single-image" src="<?php echo $product[0]->ubicacion ?>" data-zoom-image="<?php echo $product[0]->ubicacion ?>" />
-										</div>
-										<div class="product-item">
-											<img class="product-single-image" src="assets/images/products/870618B.jpg" data-zoom-image="assets/images/products/870618B.jpg" />
-										</div>
-										<div class="product-item">
-											<img class="product-single-image" src="assets/images/products/zoom/product-3-big.jpg" data-zoom-image="assets/images/products/zoom/product-3-big.jpg" />
-										</div>
+										<?php if (!empty($productosColor)) : ?>
+											<?php foreach ($productosColor as $productoC) : ?>
+												<div class="product-item">
+													<img class="product-single-image" src="<?php echo $productoC->ubicacion ?>" data-zoom-image="<?php echo $productoC->ubicacion ?>" />
+												</div>
+											<?php endforeach ?>
+										<?php else : ?>
+											<div class="product-item">
+												<img class="product-single-image" src="<?php echo $product[0]->ubicacion ?>" data-zoom-image="<?php echo $product[0]->ubicacion ?>" />
+											</div>
+										<?php endif ?>
 									</div>
 									<!-- End .product-single-carousel -->
 									<span class="prod-full-screen">
@@ -45,15 +47,23 @@
 								</div>
 
 								<div class="prod-thumbnail owl-dots transparent-dots flex-column" id='carousel-custom-dots'>
-									<div class="owl-dot">
-										<img src="<?php echo $product[0]->ubicacion ?>" />
-									</div>
-									<div class="owl-dot">
+									<?php if(!empty($productosColor)) : ?>
+									<?php foreach ($productosColor as $productoC) : ?>
+										<div class="owl-dot">
+											<img src="<?php echo $productoC->ubicacion ?>" />
+										</div>
+									<?php endforeach ?>
+									<?php else : ?>
+										<div class="owl-dot">
+											<img src="<?php echo $product[0]->ubicacion ?>" />
+										</div>
+									<?php endif ?>
+									<!--<div class="owl-dot">
 										<img src="assets/images/products/870618.jpg" />
 									</div>
 									<div class="owl-dot">
 										<img src="assets/images/products/zoom/product-3.jpg" />
-									</div>
+									</div>-->
 								</div>
 							</div>
 						</div><!-- End .col-lg-6 -->
@@ -81,42 +91,28 @@
 										<?php if (isset($colores)) : ?>
 											<label>Colores:</label>
 											<ul class="config-swatch-list">
-												<?php foreach ($colores as $color) ?>
-												<!--<li class="">
+												<?php foreach ($colores as $color) : ?>
+													<!--<li class="">
 													<a href="#" class="first-color" style="background-color: #0188cc;"></a>
-												</li>
-												<li class="">
-													<a href="#" style="background-color: #0188cc;"></a>
-												</li>
-												<li>
-													<a href="#" style="background-color: #ab6e6e;"></a>
-												</li>
-												<li>
-													<a href="#" style="background-color: #ddb577;"></a>
-												</li>
-												<li>
-													<a href="#" style="background-color: #6085a5;"></a>
 												</li>-->
-												<div class="">
-													<a href="google.com.co"><img src="NEGRO.PNG" alt="" style="margin-right: 3px;"></a>
-												</div>
-												<div class="">
-													<img src="NEGRO-CROMO.PNG" alt="" style="margin-right: 3px;">
-												</div>
+													<div class="active">
+														<a href="#"><img src="<?php echo $color->imgColor ?>" alt="" style="margin-right: 3px;"></a>
+													</div>
+												<?php endforeach ?>
 											</ul>
 										<?php else : ?>
 										<?php endif ?>
 									</div><!-- End .product-single-filter -->
 									<div class="product-single-filter mb-2">
-									<?php if(isset($voltajes)) : ?>
-										<label>Sizes:</label>
-										<ul class="config-size-list">
-											<?php foreach ($voltajes as $voltaje) : ?>
-											<li class=""><a href="#"><?php echo $voltaje->nombre ?></a></li>
-											<?php endforeach ?>
-										</ul>
-									<?php else : ?>
-									<?php endif ?>
+										<?php if (isset($voltajes)) : ?>
+											<label>Sizes:</label>
+											<ul class="config-size-list">
+												<?php foreach ($voltajes as $voltaje) : ?>
+													<li class=""><a href="#"><?php echo $voltaje->nombre ?></a></li>
+												<?php endforeach ?>
+											</ul>
+										<?php else : ?>
+										<?php endif ?>
 									</div><!-- End .product-single-filter -->
 								</div><!-- End .product-filters-container -->
 
@@ -127,7 +123,7 @@
 										<input class="horizontal-quantity form-control" type="text">
 									</div><!-- End .product-single-qty -->
 
-									<a href="cart.html" class="btn btn-dark add-cart icon-shopping-cart" title="Añadir al carrito">Añadir a la bolsa</a>
+									<a href="cart.html" class="btn btn-danger add-cart icon-shopping-cart" title="Añadir al carrito">Añadir a la bolsa</a>
 								</div><!-- End .product-action -->
 
 								<hr class="divider mb-1">

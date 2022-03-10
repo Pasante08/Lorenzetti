@@ -45,7 +45,6 @@
 </head>
 
 <body class="full-screen-slider">
-    <div class="page-wrapper">
         <!-- End .top-notice -->
         <header class="header header-transparent">
             <div class="header-middle">
@@ -61,7 +60,7 @@
                                     <a href="#">Inicio</a>
                                 </li>
                                 <li>
-                                    <a href="#">Productos</a>
+                                    <a href="">Productos</a>
                                 </li>
                                 <li>
                                     <a href="#">Fichas técnicas</a>

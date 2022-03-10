@@ -2,6 +2,7 @@
 
 require 'models/producto.php';
 require 'models/categoria.php';
+require 'models/productosColor.php';
 require 'vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -16,6 +17,7 @@ class productoController
         $this->productoModel = new Producto;
         $this->spreadsheet = new Spreadsheet;
         $this->categoriaModel = new Categoria;
+        $this->prdtColorModel = new ProductoColor;
     }
 
     public function Index()
@@ -54,6 +56,16 @@ class productoController
         }
     }
 
+    public function categories()
+    {
+        if(isset($_REQUEST['id'])) {
+            $products = $this->productoModel->productsByCat($_REQUEST['id']);
+            require 'views/products.php';
+        } else {
+            echo "Operacion incorrecta, categoria no disponible";
+        }
+    }
+
     public function search()
     {
         if(isset($_REQUEST['name'])) {
@@ -62,17 +74,25 @@ class productoController
             if($number == 1) {
                 if($_REQUEST['cat'] != null) {
                     $products = $this->productoModel->searchProductByCat(true, $_REQUEST['name'], $_REQUEST['cat']);
+                    /*print_r("Una palabra con categoria".$products);
+                    die();*/
                     require 'views/products.php';
                 } else {
                     $products = $this->productoModel->searchProducts(true, $_REQUEST['name']);
+                    /*print_r("Una palabra sin categoria".$products);
+                    die();*/
                     require 'views/products.php';
                 }
             } else {
                 if($_REQUEST['cat'] != null) {
                     $products = $this->productoModel->searchProductByCat(false, $_REQUEST['name'], $_REQUEST['cat']);
+                    /*print_r("Varias palabras con categoria".$products);
+                    die();*/
                     require 'views/products.php';
                 } else {
                     $products = $this->productoModel->searchProducts(false, $_REQUEST['name']);
+                    /*print_r("Varias palabras sin categoria".$products);
+                    die();*/
                     require 'views/products.php';
                 }
             }
@@ -143,6 +163,7 @@ class productoController
             if($product[0]->voltaje != null) {
                 $voltajes = $this->productoModel->filtros($_GET['id'], 'voltaje');
             }
+            $productosColor = $this->prdtColorModel->getById($_GET['id']);
             $productos = $this->productoModel->productLimit($product[0]->categoria_id);
             require 'views/product.php';
         }

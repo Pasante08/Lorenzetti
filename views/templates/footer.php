@@ -1,4 +1,4 @@
-<footer class="footer appear-animate">
+    <footer class="footer appear-animate">
             <div class="footer-middle">
                 <div class="container">
                     <div class="row row-sm">
@@ -64,8 +64,6 @@
                 </div><!-- End .footer-bottom -->
             </div><!-- End .containr -->
         </footer><!-- End .footer -->
-    </div><!-- End .page-wrapper -->
-
     <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
 
     <div class="mobile-menu-container">

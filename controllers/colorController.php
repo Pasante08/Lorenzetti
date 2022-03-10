@@ -80,8 +80,10 @@ class colorController
                 $numeroFilas = $hojaActual->getHighestDataRow();
                 for($indiceFila = 1; $indiceFila<=$numeroFilas; $indiceFila++) {
                     $nombre = $hojaActual->getCellByColumnAndRow(1, $indiceFila);
+                    $imgColor = $hojaActual->getCellByColumnAndRow(2, $indiceFila);
                     $array = array(
-                        "nombre" => "$nombre", 
+                        "nombre" => "$nombre",
+                        "imgColor" => "$imgColor"
                     );
                     $this->colorModel->newColor($array);
                 }

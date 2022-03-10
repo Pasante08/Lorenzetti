@@ -3735,6 +3735,16 @@ span.page-link,
     height: 278px;
 }
 
+.banner-image {
+    /*width: 1500px;
+    height: 320px;*/
+    background-size: cover;
+}
+
+.banner-image img {
+    width: 100%;
+}
+
 .product-default {
     color: #777;
     margin-bottom: 2rem
@@ -3839,7 +3849,7 @@ span.page-link,
     padding: 0px 10px 10px 10px;
     display: flex;
     align-items: center;
-    height: 40px;
+    /*height: 40px;*/
     text-align: center
 }
 
@@ -3938,8 +3948,7 @@ span.page-link,
 }
 
 .product-default:hover .btn-add-cart {
-    background-color: #000;
-    border-color: #000;
+    opacity: 1;
     color: #fff
 }
 
@@ -4418,7 +4427,7 @@ span.page-link,
     height: auto;
     padding: 1.4rem;
     color: #fff;
-    background-color: #000;
+    background-color: #aa0a10;
     font-size: 1.3rem;
     font-weight: 400;
     letter-spacing: .025em;
@@ -4528,17 +4537,15 @@ span.page-link,
 .left-details .btn-icon-wish,
 .left-details .btn-quickview,
 .left-details .btn-add-cart {
-    background-color: #f4f4f4;
+    background-color: #aa0a10;
     border-color: #f4f4f4;
-    color: black
+    color: #f4f4f2
 }
 
 .left-details .btn-icon-wish:hover,
 .left-details .btn-quickview:hover,
 .left-details .btn-add-cart:hover {
-    background-color: #000;
-    border-color: #000;
-    color: #fff
+    opacity: 1;
 }
 
 .left-details .btn-icon-wish,
@@ -6996,7 +7003,10 @@ header .separator {
     visibility: visible
 }
 
-/*.cart-dropdown:hover*/ .dropdown-menu,
+
+/*.cart-dropdown:hover*/
+
+.dropdown-menu,
 .compare-dropdown:hover .dropdown-menu {
     top: 100%;
     opacity: 1;
@@ -9117,7 +9127,7 @@ main .sticky-header .product-ratings:before {
     border: 1px solid #dae2e6;
     background-color: #f4f4f4;
     color: #21293c;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 600;
     line-height: 2.8rem
 }
@@ -11999,7 +12009,7 @@ section {
 }
 
 .category-banner h3 {
-    font-size: 2.5em
+    font-size: 3.5em
 }
 
 .category-banner h4 {
@@ -12031,7 +12041,8 @@ section {
 .category-slide-content h2,
 .category-slide-content h3,
 .category-slide-content h5 {
-    line-height: 1
+    line-height: 1;
+    color: #ffff
 }
 
 @media (min-width: 1400px) {

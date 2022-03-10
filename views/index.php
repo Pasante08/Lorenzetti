@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,15 +13,6 @@
         <div class="home-slider owl-carousel owl-theme show-nav-hover nav-big">
             <div class="home-slide home-slide1 banner">
                 <img class="slide-bg owl-lazy" src="assets/images/lazy.png" data-src="assets/images/slider/Banner_lorenzetti.jpg" alt="home banner">
-                <!--<div class="banner-layer banner-layer-middle">
-                    <h2>Winter Fashion Trends</h2>
-                    <h3 class="text-uppercase mb-0">Get up to 30% off</h3>
-                    <h4 class="m-b-4">on Jackets</h4>
-
-                    <h5 class="text-uppercase">Starting at<span class="coupon-sale-text"><sup>$</sup>199<sup>99</sup></span></h5>
-                    <a href="category.html" class="btn btn-dark btn-xl" role="button">Shop Now</a>
-                </div>-->
-                <!-- End .banner-layer -->
             </div>
             <!-- End .home-slide -->
 
@@ -49,7 +39,7 @@
             <?php foreach($categorias as $categoria) : ?>
                 <div class="col-6 col-sm-4 col-lg-3 mx-auto">
                     <div class="product-category">
-                        <a href="#">
+                        <a href="?controller=producto&method=categories&id=<?php echo $categoria->idCategoria ?>">
                             <figure>
                                 <img src="<?php echo $categoria->ubicacion ?>" alt="<?php echo $categoria->imagen ?>">
                             </figure>
@@ -85,7 +75,7 @@
                         <?php if($producto->estado == 'SI') : ?>
                     <div class="product-default left-details">
                             <figure>
-                                <a href="#">
+                                <a href="?controller=producto&method=viewProduct&id=<?php echo $producto->idProducto ?>">
                                     <div class="image-product">
                                         <img src="<?php echo $producto->ubicacion ?>" width="500" height="500">
                                     </div>
@@ -95,7 +85,7 @@
                                 <div class="category-list">
                                 </div>
                                 <h2 class="product-title">
-                                    <a href="product.html"><?php echo $producto->nombre ?></a>
+                                    <a href="?controller=producto&method=viewProduct&id=<?php echo $producto->idProducto ?>"><?php echo $producto->nombre ?></a>
                                 </h2>
                                 <div class="ratings-container">
                                 </div><!-- End .product-container -->

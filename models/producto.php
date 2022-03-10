@@ -74,7 +74,7 @@
         public function searchProductByCat($bool, $search, $cat)
         {
             if($bool) {
-                $srtSql = "SELECT * FROM producto WHERE nombre LIKE '%$search%' AND categoria_id LIKE '%$cat%'";
+                $strSql = "SELECT * FROM producto WHERE nombre LIKE '%$search%' AND categoria_id LIKE '%$cat%'";
             } else {
                 $strSql = "SELECT * FROM producto WHERE MATCH (nombre) AGAINST ( '$search' ) AND categoria_id LIKE '%$cat%'";
             }
@@ -107,6 +107,17 @@
                         break;
                 }
                 $arrayData = ['id' => $id];
+                return $this->pdo->select($strSql, $arrayData);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+
+        public function productsByCat($id)
+        {
+            try {
+                $strSql = "SELECT * FROM producto WHERE categoria_id =:categoria_id";
+                $arrayData = ['categoria_id' => $id];
                 return $this->pdo->select($strSql, $arrayData);
             } catch (PDOException $e) {
                 die($e->getMessage());
