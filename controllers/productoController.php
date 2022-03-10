@@ -74,25 +74,17 @@ class productoController
             if($number == 1) {
                 if($_REQUEST['cat'] != null) {
                     $products = $this->productoModel->searchProductByCat(true, $_REQUEST['name'], $_REQUEST['cat']);
-                    /*print_r("Una palabra con categoria".$products);
-                    die();*/
                     require 'views/products.php';
                 } else {
                     $products = $this->productoModel->searchProducts(true, $_REQUEST['name']);
-                    /*print_r("Una palabra sin categoria".$products);
-                    die();*/
                     require 'views/products.php';
                 }
             } else {
                 if($_REQUEST['cat'] != null) {
                     $products = $this->productoModel->searchProductByCat(false, $_REQUEST['name'], $_REQUEST['cat']);
-                    /*print_r("Varias palabras con categoria".$products);
-                    die();*/
                     require 'views/products.php';
                 } else {
                     $products = $this->productoModel->searchProducts(false, $_REQUEST['name']);
-                    /*print_r("Varias palabras sin categoria".$products);
-                    die();*/
                     require 'views/products.php';
                 }
             }

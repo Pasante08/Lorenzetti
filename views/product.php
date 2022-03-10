@@ -27,7 +27,7 @@
 						<div class="col-lg-6 product-single-gallery">
 							<div class="sticky-slider">
 								<div class="product-slider-container">
-									<div class="product-single-carousel owl-carousel owl-theme">
+									<div class="product-single-carousel owl-carousel owl-theme caxsa">
 										<?php if (!empty($productosColor)) : ?>
 											<?php foreach ($productosColor as $productoC) : ?>
 												<div class="product-item">
@@ -49,21 +49,15 @@
 								<div class="prod-thumbnail owl-dots transparent-dots flex-column" id='carousel-custom-dots'>
 									<?php if(!empty($productosColor)) : ?>
 									<?php foreach ($productosColor as $productoC) : ?>
-										<div class="owl-dot">
-											<img src="<?php echo $productoC->ubicacion ?>" />
+										<div id="caxsa<?php echo $productoC->color_id ?>" class="owl-dot">
+											<img src="<?php echo $productoC->ubicacion ?>"/>
 										</div>
 									<?php endforeach ?>
 									<?php else : ?>
 										<div class="owl-dot">
-											<img src="<?php echo $product[0]->ubicacion ?>" />
+											<img src="<?php echo $product[0]->ubicacion ?>"/>
 										</div>
 									<?php endif ?>
-									<!--<div class="owl-dot">
-										<img src="assets/images/products/870618.jpg" />
-									</div>
-									<div class="owl-dot">
-										<img src="assets/images/products/zoom/product-3.jpg" />
-									</div>-->
 								</div>
 							</div>
 						</div><!-- End .col-lg-6 -->
@@ -90,30 +84,29 @@
 									<div class="product-single-filter">
 										<?php if (isset($colores)) : ?>
 											<label>Colores:</label>
-											<ul class="config-swatch-list">
+											<ul class="config-swatch-list caxsalls">
 												<?php foreach ($colores as $color) : ?>
-													<!--<li class="">
-													<a href="#" class="first-color" style="background-color: #0188cc;"></a>
-												</li>-->
-													<div class="active">
-														<a href="#"><img src="<?php echo $color->imgColor ?>" alt="" style="margin-right: 3px;"></a>
-													</div>
+													<!--div class="active" data-id="<?php echo $color->idColor ?>">-->
+														<a href="#" data-id="<?php echo $color->idColor ?>"><img src="<?php echo $color->imgColor ?>" alt="" style="margin-right: 3px;"></a>
+													<!--</div>-->
 												<?php endforeach ?>
 											</ul>
 										<?php else : ?>
 										<?php endif ?>
 									</div><!-- End .product-single-filter -->
+									<input type="text" id="color_id" name="color_id" value="">
 									<div class="product-single-filter mb-2">
 										<?php if (isset($voltajes)) : ?>
 											<label>Sizes:</label>
-											<ul class="config-size-list">
+											<ul class="config-size-list caxsalls1">
 												<?php foreach ($voltajes as $voltaje) : ?>
-													<li class=""><a href="#"><?php echo $voltaje->nombre ?></a></li>
+													<li class="" value="<?php echo $voltaje->idVoltaje ?>"><a href=""><?php echo $voltaje->nombre ?></a></li>
 												<?php endforeach ?>
 											</ul>
 										<?php else : ?>
 										<?php endif ?>
 									</div><!-- End .product-single-filter -->
+									<input type="text" id="voltaje_id" name="voltaje_id" value="">
 								</div><!-- End .product-filters-container -->
 
 								<hr class="divider">
