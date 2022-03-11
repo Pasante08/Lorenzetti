@@ -1,6 +1,40 @@
-$("#target").click(function() {
+$(document).ready(function() {
+    //$("#btn-submit").removeClass('disabled')
+    var color_id = !!document.getElementById("color_id");
+    var voltaje_id = !!document.getElementById("voltaje_id");
+    if (color_id) {
+        $("#color_id").change(function() {
+            if ($(this).val() == "") {
+                $("#btn-submit").prop("disabled", true);
+            } else {
+                $("#btn-submit").prop("disabled", false);
+                $('#color_id').val($(".caxsalls a").attr('data-id'))
+                console.log("#caxsa" + $(this).attr('data-id'))
+            }
+        })
+    } else if (voltaje_id) {
+        $("#voltaje_id").change(function() {
+            if ($(this).val() == "") {
+                $("#btn-submit").prop("disabled", true);
+            } else {
+                $("#btn-submit").prop("disabled", false);
+            }
+        })
+    } else {
+        $("#btn-submit").prop("disabled", false);
+    }
+    /*$("#color_id").click(function() {
+        if ($(this).val() == "0") {
+            $("#btn-submit").prop("disabled", true);
+        } else {
+            $("#btn-submit").prop("disabled", false);
+        }
+    })*/
+})
+
+/*$("#target").click(function() {
     alert("Handler for .click() called.");
-});
+});*/
 
 /*function myFunction() {
     console.log("llego");
@@ -8,32 +42,34 @@ $("#target").click(function() {
 
 $(".caxsalls a").click(
     function(e) {
-        //console.log("hola");
         e.preventDefault();
-        /*$(".caxsalls a").not(this).removeClass("active")
-        $(this).addClass("active")*/
+        /*if ($("#color_id").val() == "") {
+            $("#btn-submit").addClass('disabled')
+        } else {
+            $("#btn-submit").removeClass('disabled')
+        }*/
         $('#color_id').val($(this).attr('data-id'))
         $("#caxsa" + $(this).attr('data-id')).addClass("active")
         $(this).removeClass("active")
-            /*$(".caxsa").hide();
-            $("#caxsa" + $(this).attr('data-id')).show()*/
-            /*$(".caxsa").not(this).removeClass("active")*/
-            //$("#caxsa" + $(this).attr('data-id').remove("active"))
-            /*$(this).addClass("active")*/
         console.log("#caxsa" + $(this).attr('data-id'))
+        if ($('#voltaje_id').val() == "")
+            $("#btn-submit").prop("disabled", true);
+        else
+            $("#btn-submit").prop("disabled", false);
     }
 );
 
 $(".caxsalls1 li").click(
     function(e) {
-        //console.log("hola");
         e.preventDefault();
-        /*$("caxsalls li").not(this).removeClass("active")
-        $(this).addClass("active")*/
         $('#voltaje_id').val($(this).attr("value"))
         console.log("#caxsa" + $(this).attr('value'))
+        if ($('#color_id').val() == "")
+            $("#btn-submit").prop("disabled", true);
+        else
+            $("#btn-submit").prop("disabled", false);
     }
-)
+);
 
 /* ================================================
 ---------------------- Main.js ----------------- */

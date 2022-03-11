@@ -1789,6 +1789,29 @@ aside .banner {
     color: #fff
 }
 
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    box-shadow: none
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger.focus {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #bd2130 box-shadow: none
+}
+
+.btn-danger.disabled,
+.btn-danger:disabled {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    cursor: not-allowed
+}
+
 .btn-dark {
     border-color: #222529;
     background-color: #222529;
