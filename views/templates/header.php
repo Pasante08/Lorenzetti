@@ -106,7 +106,7 @@
                         </div>
 
                         <div class="dropdown cart-dropdown">
-                            <a href="#" class="dropdown-toggle dropdown-arrow" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="">
+                            <a href="#" id="btn-carrito" class="dropdown-toggle dropdown-arrow" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="">
                                 <i class="icon-shopping-cart"></i>
                                 <span class="cart-count badge-circle">2</span>
                             </a>

@@ -106,15 +106,17 @@ class productoController
                 $numeroFilas = $hojaActual->getHighestDataRow();
                 for($indiceFila = 1; $indiceFila<=$numeroFilas; $indiceFila++) {
                     $nombre = $hojaActual->getCellByColumnAndRow(1, $indiceFila);
-                    $precio = $hojaActual->getCellByColumnAndRow(2, $indiceFila);
-                    $imagen = $hojaActual->getCellByColumnAndRow(3, $indiceFila);
-                    $ubicacion = $hojaActual->getCellByColumnAndRow(4, $indiceFila);
-                    $categoria_id = $hojaActual->getCellByColumnAndRow(5, $indiceFila);
-                    $estado = $hojaActual->getCellByColumnAndRow(6, $indiceFila);
-                    $voltaje = $hojaActual->getCellByColumnAndRow(7, $indiceFila);
-                    $color = $hojaActual->getCellByColumnAndRow(8, $indiceFila);
+                    $descripcion = $hojaActual->getCellByColumnAndRow(2, $indiceFila);
+                    $precio = $hojaActual->getCellByColumnAndRow(3, $indiceFila);
+                    $imagen = $hojaActual->getCellByColumnAndRow(4, $indiceFila);
+                    $ubicacion = $hojaActual->getCellByColumnAndRow(5, $indiceFila);
+                    $categoria_id = $hojaActual->getCellByColumnAndRow(6, $indiceFila);
+                    $estado = $hojaActual->getCellByColumnAndRow(7, $indiceFila);
+                    $voltaje = $hojaActual->getCellByColumnAndRow(8, $indiceFila);
+                    $color = $hojaActual->getCellByColumnAndRow(9, $indiceFila);
                     $array = array(
-                        "nombre" => "$nombre", 
+                        "nombre" => "$nombre",
+                        "descripcion" => "$descripcion",
                         "precio" => $precio,
                         "imagen" => "$imagen",
                         "ubicacion" => "$ubicacion",
@@ -123,8 +125,6 @@ class productoController
                         "voltaje" => "$voltaje",
                         "color" => "$color"
                     );
-                    /*print_r($array);
-                    die();*/
                     $this->productoModel->newProduct($array);
                 }
                 $productos = $this->productoModel->getAll();

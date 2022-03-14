@@ -30,6 +30,9 @@ $(document).ready(function() {
             $("#btn-submit").prop("disabled", false);
         }
     })*/
+    $("#btn-carrito").click(function() {
+        alert("hola");
+    })
 })
 
 /*$("#target").click(function() {

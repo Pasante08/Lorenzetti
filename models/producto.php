@@ -50,6 +50,26 @@
             }
         }
 
+        public function getByIdCart($id)
+        {
+            try {
+                $strSql = "SELECT p.*, pc.ubicacion AS imagen FROM producto AS p
+                INNER JOIN producto_color AS pc 
+                ON pc.producto_id = p.idProducto WHERE idProducto=:id";
+                $arrayData = ['id' => $id];
+                $row = $this->pdo->selectfetch($strSql, $arrayData);
+                $item = [
+                        'idProducto'    => $row['idProducto'],
+                        'nombre'        => $row['nombre'],
+                        'precio'        => $row['precio'],
+                        'imagen'     => $row['imagen']
+                    ];
+                return json_encode(['statuscode' => 200, 'item' => $item]);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+
         public function editProducto($data)
         {
             try {
