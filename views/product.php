@@ -85,7 +85,7 @@
 									<div class="product-filters-container">
 										<div class="product-single-filter">
 											<?php if (isset($colores)) : ?>
-												<input type="hidden" id="color_id" name="color_id" value="">
+												<input type="text" id="color_id" name="color_id" value="">
 												<label>Colores:</label>
 												<ul class="config-swatch-list caxsalls">
 													<?php foreach ($colores as $color) : ?>
@@ -98,7 +98,7 @@
 										</div><!-- End .product-single-filter -->
 										<div class="product-single-filter mb-2">
 											<?php if (isset($voltajes)) : ?>
-												<input type="hidden" id="voltaje_id" name="voltaje_id" value="">
+												<input type="text" id="voltaje_id" name="voltaje_id" value="">
 												<label>Sizes:</label>
 												<ul class="config-size-list caxsalls1">
 													<?php foreach ($voltajes as $voltaje) : ?>
