@@ -1,14 +1,14 @@
-<?php
+ <?php
 
 class Database extends PDO
 {
 	//Definicion de atributos de la clase
 	private $driver	='mysql';
-	private $host = 'localhost';
-	private $dbName = 'lorenzetti';
+	private $host = 'localhost:3306';
+	private $dbName = 'fenusas_formuser';
 	private $charset = 'utf8';
-	private $user = 'root';
-	private $password = '';
+	private $user = 'fenusas_fenusas';
+	private $password = 'UsUaRiOsIsTeMaS2021_FeNuSaS';
 
 	public function __construct()
 	{
@@ -39,7 +39,14 @@ class Database extends PDO
 		}
 	}
 
-	public function selectfetch($strSql, $arrayData = array(), $fetchMode = PDO::FETCH_OBJ)
+	public function selectfetch($strSql, $arrayData = array(), $fetchMode = PDO::FETCH_ASSOC)
+	{
+		$query = $this->prepare($strSql);
+		$query->execute($arrayData);
+		return $query->fetchAll($fetchMode);
+	}
+
+	public function selectfetchP($strSql, $arrayData = array(), $fetchMode = PDO::FETCH_OBJ)
 	{
 		$query = $this->prepare($strSql);
 		$query->execute($arrayData);
@@ -102,6 +109,18 @@ class Database extends PDO
 	{
 		try {
 			return $this->exec("DELETE FROM $table WHERE $where");
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
+
+	//Metodo para buscar factura por procedimiento
+	public function procedure(int $idFactura, $fetchMode = PDO::FETCH_OBJ)
+	{
+		try {
+			$query = $this->prepare("CALL select_factura('{$idFactura}')");
+			$query->execute();
+			return $query->fetchAll($fetchMode);
 		} catch (PDOException $e) {
 			die($e->getMessage());
 		}

@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Lorenzetti Colombia</title>
+
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Duchas electricas Lorenzetti">
+    <meta name="author" content="SW-THEMES">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.ico">
 </head>
 
 <body>
@@ -15,17 +23,11 @@
                 <img class="slide-bg owl-lazy" src="assets/images/lazy.png" data-src="assets/images/slider/Banner_lorenzetti.jpg" alt="home banner">
             </div>
             <!-- End .home-slide -->
-
+            <div class="home-slide home-slide1 banner">
+                <img class="slide-bg owl-lazy" src="assets/images/lazy.png" data-src="assets/images/slider/Banner_lorenzetti_2.jpg" alt="home banner">
+            </div>
             <div class="home-slide home-slide2 banner">
-                <img class="slide-bg owl-lazy" src="assets/images/lazy.png" data-src="assets/images/slider/slide2.jpg" alt="home banner">
-                <div class="banner-layer banner-layer-middle">
-                    <h2 class="m-b-1">New Season Hats </h2>
-                    <h3 class="text-uppercase rotated-upto-text mb-0"><small>Up to</small>20% off</h3>
-
-                    <hr class="short-thick-divider">
-
-                    <h5 class="text-uppercase d-inline-block mb-0">Starting at <span class="ml-2">$<em>19</em>99</span></h5>
-                    <a href="category.html" class="btn btn-dark btn-xl btn-icon-right" role="button">Shop Now <i class="fas fa-long-arrow-alt-right"></i></a>
+                <img class="slide-bg owl-lazy" src="assets/images/lazy.png" data-src="assets/images/slider/Banner_lorenzetti_1.jpg" alt="home banner">
                 </div>
                 <!-- End .banner-layer -->
             </div>
@@ -93,7 +95,7 @@
                                     <span class="product-price">$ <?php echo number_format($producto->precio) ?></span>
                                 </div><!-- End .price-box -->
                                 <div class="product-action">
-                                    <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i>AÑADIR A LA BOLSA</button> 
+                                    <a href="?controller=producto&method=viewProduct&id=<?php echo $producto->idProducto ?>" class="btn-icon btn-add-cart btn-quickview-product">AÑADIR A LA BOLSA</a>
                                 </div>
                             </div><!-- End .product-details -->
                         </div>
@@ -104,62 +106,10 @@
 
 
             <hr class="mt-3 mb-6">
-
-            <div class="row feature-boxes-container pt-2">
-                
-
-                <div class="col-sm-6 col-lg-4">
-                    <div class="feature-box feature-box-simple text-center">
-                        <i class="icon-credit-card"></i>
-
-                        <div class="feature-box-content">
-                            <h3 class="text-uppercase">Pago seguro</h3>
-                            <h5>Seguro y rápido</h5>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum magna, et dapibus lacus. Lorem ipsum dolor sit amet.</p>
-                        </div>
-                        <!-- End .feature-box-content -->
-                    </div>
-                    <!-- End .feature-box -->
-                </div>
-                <!-- End .col-lg-3 -->
-
-                <div class="col-sm-6 col-lg-4">
-                    <div class="feature-box feature-box-simple text-center">
-                        <i class="icon-action-undo"></i>
-
-                        <div class="feature-box-content">
-                            <h3 class="text-uppercase">Devoluciones gratis</h3>
-                            <h5>Fácil y Gratis</h5>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum magna, et dapib.</p>
-                        </div>
-                        <!-- End .feature-box-content -->
-                    </div>
-                    <!-- End .feature-box -->
-                </div>
-                <!-- End .col-lg-3 -->
-
-                <div class="col-sm-6 col-lg-4">
-                    <div class="feature-box feature-box-simple text-center">
-                        <i class="icon-shipping"></i>
-
-                        <div class="feature-box-content">
-                            <h3 class="text-uppercase">Envio gratis</h3>
-                            <h5>Orders Over $99</h5>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum magna, et dapib.</p>
-                        </div>
-                        <!-- End .feature-box-content -->
-                    </div>
-                    <!-- End .feature-box -->
-                </div>
-                <!-- End .col-lg-3 -->
-            </div>
-            <!-- End .row .feature-boxes-container-->
+            
         </section>
     </main>
-    <!-- End .main -->
+    
     <?php require 'templates/footer.php'; ?>
 </body>
 </html>

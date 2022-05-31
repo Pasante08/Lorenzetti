@@ -51,11 +51,13 @@ class colorController
                     $color_id = $hojaActual->getCellByColumnAndRow(2, $indiceFila);
                     $imagen = $hojaActual->getCellByColumnAndRow(3, $indiceFila);
                     $ubicacion = $hojaActual->getCellByColumnAndRow(4, $indiceFila);
+                    $imgxcien = $hojaActual->getCellByColumnAndRow(5, $indiceFila);
                     $array = array(
                         "producto_id" => "$producto_id", 
                         "color_id" => "$color_id", 
                         "imagen" => "$imagen",
-                        "ubicacion" => "$ubicacion"
+                        "ubicacion" => "$ubicacion",
+                        "imgxcien" => "$imgxcien"
                     );
                     $this->colorModel->newColorProducto($array);
                 }

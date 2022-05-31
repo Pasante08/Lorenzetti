@@ -1769,8 +1769,8 @@ aside .banner {
 
 .btn-outline-secondary:hover,
 .btn-outline-secondary.focus {
-    border-color: #000;
-    background-color: #000;
+    border-color: #b7151c;
+    background-color: #b7151c;
     color: #fff;
     box-shadow: none
 }
@@ -1791,8 +1791,8 @@ aside .banner {
 
 .btn-danger {
     color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545;
+    background-color: #D71921;
+    border-color: #D71921;
     box-shadow: none
 }
 
@@ -1800,8 +1800,8 @@ aside .banner {
 .btn-danger:focus,
 .btn-danger.focus {
     color: #fff;
-    background-color: #c82333;
-    border-color: #bd2130 box-shadow: none
+    background-color: #b7151c;
+    border-color: #b7151c box-shadow: none
 }
 
 .btn-danger.disabled,
@@ -2860,6 +2860,11 @@ form h2 {
     line-height: 1.5
 }
 
+.not-active {
+    pointer-events: none;
+    cursor: default
+}
+
 .form-control:focus {
     border-color: #dfdfdf;
     background-color: #fff;
@@ -3863,7 +3868,7 @@ span.page-link,
     max-width: 100%;
     font-weight: 400;
     font-size: 1.5rem;
-    font-family: "Open Sans", sans-serif;
+    font-family: "MyriadProRegular", sans-serif;
     line-height: 1.35;
     letter-spacing: .005em;
     margin-bottom: .72rem;
@@ -5612,7 +5617,7 @@ span.page-link,
     font-weight: 700;
     font-size: 1.8rem;
     line-height: 1.35;
-    font-family: "Open Sans", sans-serif;
+    font-family: "MyriadProRegular", sans-serif;
     letter-spacing: -.005em;
     margin-bottom: 1rem;
     text-transform: uppercase
@@ -6014,7 +6019,7 @@ body {
     font-size: 1.4rem;
     font-weight: 400;
     line-height: 1.4;
-    font-family: "Open Sans", sans-serif;
+    font-family: "MyriadProRegular", sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden
@@ -6206,7 +6211,7 @@ h6,
     color: #222529;
     font-weight: 700;
     line-height: 1.1;
-    font-family: Poppins, sans-serif
+    font-family: MyriadProBold, sans-serif
 }
 
 h1,
@@ -6360,11 +6365,11 @@ a:focus {
 }
 
 .font1 {
-    font-family: "Open Sans", sans-serif !important
+    font-family: "MyriadProRegular", sans-serif !important
 }
 
 .font2 {
-    font-family: Poppins, sans-serif !important
+    font-family: MyriadProRegular, sans-serif !important
 }
 
 @media (max-width: 767px) {
@@ -6466,6 +6471,17 @@ a:focus {
 .row-sparse {
     margin-left: -15px;
     margin-right: -15px
+}
+
+.about-us {
+    margin: 1.875rem 0rem;
+}
+
+.about-us p {
+    margin: 1.875rem 0rem;
+    color: #606060;
+    font-size: 2rem;
+    line-height: 1.6
 }
 
 .row-sparse>[class*="col-"] {
@@ -7190,7 +7206,7 @@ header .separator {
 }
 
 .cart-dropdown .product-image-container img {
-    object-fit: none
+    /*object-fit: none*/
 }
 
 .cart-dropdown .product-image-container a:after {
@@ -7651,7 +7667,7 @@ header .separator {
 .menu>li {
     float: left;
     position: relative;
-    margin-right: 2.8rem
+    margin-right: 2rem
 }
 
 .menu>li>a {
@@ -7787,7 +7803,7 @@ header .separator {
 }
 
 .main-nav .menu>li {
-    margin-right: 2.9rem
+    margin-right: 2rem
 }
 
 .main-nav .menu>li>a {
@@ -8092,7 +8108,7 @@ footer a {
 
 footer a:hover,
 footer a:focus {
-    color: #000
+    color: #fff
 }
 
 .footer-middle {
@@ -8202,6 +8218,24 @@ footer .contact-info-label {
     font-weight: 400;
     text-transform: uppercase;
     margin-bottom: 1px
+}
+
+.floatWhats {
+    padding: 0;
+    top: auto;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: auto;
+    left: 20px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 40px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 9999
 }
 
 #scroll-top {
@@ -10482,6 +10516,10 @@ tbody .product-col {
     content: '\e81b'
 }
 
+.cart-summary h4 a:hover {
+    color: #D71921
+}
+
 .cart-summary h4 a.collapsed:after {
     content: '\e81c'
 }
@@ -11579,7 +11617,7 @@ tbody .product-col {
     height: 4.3rem;
     float: left;
     border-radius: 0;
-    background-color: #000;
+    background-color: #d10911;
     color: #fff;
     font-size: 1.6rem;
     text-align: center
@@ -12190,10 +12228,10 @@ section {
 
 /*# sourceMappingURL=style.min.css.map */
 
+.rojo {
+    color: red;
+}
 
-.rojo{
-    color:red;
-  }
-  .verde{
+.verde {
     color: green;
-  }
+}

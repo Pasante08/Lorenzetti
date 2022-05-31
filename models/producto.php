@@ -39,6 +39,17 @@
             }
         }
 
+        public function filterByCat($id)
+        {
+            try {
+                $strSql = "SELECT * producto WHERE categoria_id=:id";
+                $arrayData = ['id' => $id];
+                return $this->pdo->select($strSql, $arrayData);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+
         public function getById($id)
         {
             try {
@@ -50,21 +61,61 @@
             }
         }
 
-        public function getByIdCart($id)
+        public function getByIdViewCart($id, $idC)
         {
             try {
-                $strSql = "SELECT p.*, pc.ubicacion AS imagen FROM producto AS p
-                INNER JOIN producto_color AS pc 
-                ON pc.producto_id = p.idProducto WHERE idProducto=:id";
-                $arrayData = ['id' => $id];
-                $row = $this->pdo->selectfetch($strSql, $arrayData);
-                $item = [
-                        'idProducto'    => $row['idProducto'],
-                        'nombre'        => $row['nombre'],
-                        'precio'        => $row['precio'],
-                        'imagen'     => $row['imagen']
-                    ];
-                return json_encode(['statuscode' => 200, 'item' => $item]);
+                if(!empty($idC)) {
+                    $strSql = "SELECT p.nombre, p.precio, p.preciosi, pc.ubicacion FROM producto AS p 
+                    INNER JOIN producto_color AS pc 
+                    ON pc.producto_id = p.idProducto WHERE p.idProducto = '$id' AND pc.color_id = '$idC'";
+                    return $this->pdo->select($strSql);
+                } else {
+                    $strSql = "SELECT nombre, precio, preciosi, ubicacion FROM producto WHERE idProducto=:id";
+                    $arrayData = ['id' => $id];
+                    return $this->pdo->select($strSql, $arrayData);
+                }
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+
+        public function getByIdCart($id, $color)
+        {
+            try {
+                if($color != 0) {
+                    $strSql = "SELECT p.idProducto, p.nombre, p.precio, pc.ubicacion AS imagen FROM producto AS p
+                    INNER JOIN producto_color AS pc 
+                    ON pc.producto_id = p.idProducto WHERE idProducto=:id";
+                    $arrayData = ['id' => $id];
+                    $row = $this->pdo->selectfetchP($strSql, $arrayData);
+                    /*print($row);
+                    die();*/
+                    $item = [
+                            'idProducto'    => $row['idProducto'],
+                            'nombre'        => $row['nombre'],
+                            'precio'        => $row['precio'],
+                            'imagen'     => $row['imagen']
+                        ];
+                        /*print_R($item);
+                        die();*/
+                    return json_encode(['statuscode' => 200, 'item' => $item]);
+                } else {
+                    $strSql = "SELECT p.idProducto, p.nombre, p.precio, p.ubicacion AS imagen FROM producto AS p
+                    WHERE p.idProducto=:id";
+                    $arrayData = ['id' => $id];
+                    $row = $this->pdo->selectfetchP($strSql, $arrayData);
+                    /*print($row);
+                    die();*/
+                    $item = [
+                            'idProducto'    => $row['idProducto'],
+                            'nombre'        => $row['nombre'],
+                            'precio'        => $row['precio'],
+                            'imagen'     => $row['imagen']
+                        ];
+                        /*print_R($item);
+                        die();*/
+                    return json_encode(['statuscode' => 200, 'item' => $item]);
+                }
             } catch (PDOException $e) {
                 die($e->getMessage());
             }

@@ -12,33 +12,30 @@
 			<nav aria-label="breadcrumb" class="breadcrumb-nav">
 				<div class="container">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-						<li class="breadcrumb-item"><a href="#">Men</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Accessories</li>
+						<li class="breadcrumb-item"><a href="?controller=producto"><i class="icon-home"></i></a></li>
+						<li class="breadcrumb-item active" aria-current="page">Productos</li>
 					</ol>
 				</div><!-- End .container -->
 			</nav>
 
 			<div class="container mb-3">
 				<div class="category-banner">
-                        <img class="slide-bg" src="assets/images/banners/Banner-Loren2.jpg" alt="banner" width="1500" height="320">
+                        <img class="slide-bg" src="assets/images/banners/Banner-Loren.jpg" alt="banner" width="1500" height="320">
 					<div class="category-slide-content">
-						<h3 class="text-uppercase m-b-4">Lorenzetti</h3>
+						<h3 class="text-uppercase m-b-4">PRODUCTOS</h3>
 					</div><!-- End .category-slide-content -->
 				</div><!-- End .category-slide -->
 
 				<nav class="toolbox">
                 <div class="toolbox-left">
                         <div class="toolbox-item toolbox-sort">
-                            <label>Sort By:</label>
+                            <label>Categoria:</label>
                             <div class="select-custom">
-                                <select name="orderby" class="form-control">
-									<option value="menu_order" selected="selected">Default sorting</option>
-									<option value="popularity">Sort by popularity</option>
-									<option value="rating">Sort by average rating</option>
-									<option value="date">Sort by newness</option>
-									<option value="price">Sort by price: low to high</option>
-									<option value="price-desc">Sort by price: high to low</option>
+                                <select name="orderby" id="orderBy" class="form-control">
+									<option value="" selected="selected">Seleccione...</option>
+									<?php foreach ($categorias as $categoria) : ?>
+										<option value="<?php echo $categoria->idCategoria ?>"><?php echo $categoria->nombre ?></option>
+									<?php endforeach ?>
 								</select>
                             </div>
                             <!-- End .select-custom -->
@@ -48,7 +45,7 @@
                     <!-- End .toolbox-left -->
 				</nav>
 
-				<div class="divide-line row row-sparse mx-0 up-effect image-bg-white">
+				<div class="divide-line row row-sparse mx-0 up-effect image-bg-white" id="productFilter">
                     <?php foreach($products as $product) : ?>
 					<div class="col-6 col-sm-4 col-md-3 col-xl-3 product-default inner-quickview inner-icon">
 						<figure>
@@ -59,7 +56,7 @@
 							</a>
 							<div class="btn-icon-group">
 							</div>
-							<a href="ajax/product-quick-view.html" class="btn-quickview" title="Añadir a la bolsa">Añadir a la bolsa</a> 
+							<a href="?controller=producto&method=viewProduct&id=<?php echo $product->idProducto ?>" class="btn-quickview" title="Añadir a la bolsa">Añadir a la bolsa</a> 
 						</figure>
 						<div class="product-details">
 							<div class="category-wrap">

@@ -42,4 +42,15 @@
                 die($e->getMessage());
             }
         }
+
+        public function getById($id)
+        {
+            try {
+                $strSql = "SELECT * FROM color WHERE idColor=:id";
+                $arrayData = ['id' => $id];
+                return $this->pdo->select($strSql, $arrayData);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
     }

@@ -26,6 +26,8 @@
     </script>
 
     <!-- Plugins CSS File -->
+    <!--<link rel="stylesheet" href="assets/css/style.css">-->
+    <link rel="stylesheet" type="text/css" href="assets/vendor/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 </head>
 
@@ -40,6 +42,10 @@
                     <li class="nav-item"> <a class="nav-link" href="?controller=color&method=adminIndex">producto color<span class="sr-only">(current)</span></a> </li>
                     <li class="nav-item"> <a class="nav-link" href="?controller=color&method=addColor">color<span class="sr-only">(current)</span></a> </li>
                     <li class="nav-item"> <a class="nav-link" href="?controller=prdtclr&method=addprdtclr">producto voltaje<span class="sr-only">(current)</span></a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="?controller=municipio&method=adminIndex">municipio<span class="sr-only">(current)</span></a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="?controller=productosis&method=adminIndex">Producto sistema<span class="sr-only">(current)</span></a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="?controller=ayuda&method=adminIndex">Preguntas frecuentes<span class="sr-only">(current)</span></a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="?controller=factura&method=adminIndex">Facturas<span class="sr-only">(current)</span></a> </li>
                 </ul>
             </div>
         </nav>

@@ -1,3 +1,4 @@
+
 <div class="product-single-container product-single-default product-quick-view">
     <div class="row row-sparse">
         <div class="col-lg-6 product-single-gallery">
