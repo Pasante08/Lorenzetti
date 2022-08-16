@@ -22,6 +22,7 @@
               <tr>
                 <th>Pregunta</th>
                 <th>Respuesta</th>
+                <th>Funciones</th>
               </tr>
             </thead>
               <tbody>
@@ -29,7 +30,7 @@
                 <tr>
                   <td><?php echo $help->question ?></td>
                   <td><?php echo $help->answer ?></td>
-                  <td><a href="?controller=municipio&method=edit&id=<?php echo $municipio->idMunicipio ?>">Editar</a></td>
+                  <td><a href="?controller=ayuda&method=edit&id=<?php echo $help->idHelpfaq ?>">Editar</a></td>
                 </tr>
                 <?php endforeach ?>
               </tbody>

@@ -17,17 +17,17 @@
                 </div>
                 <div class="card-body">
                     <form action="https://checkout.wompi.co/p/"  method="GET">
-                        <input type="hidden" id="public-key" name="public-key" value="pub_prod_EsYRGmlzvnQKWSL50CnmFYaVwX1a7okw">
-                        <input type="hidden" id="redirect-url" name="redirect-url" value="https://sistemasnuruena.com.co/?ref=<?php echo $reference ?>">
+                        <input type="text" id="public-key" name="public-key" value="pub_test_3rbyR94vJUGFhse3CtlNPeQ3G7Yo3W73">
+                        <input type="text" id="redirect-url" name="redirect-url" value="http://localhost/lorenzetti/?ref=<?php echo $reference ?>">
                         <label for="">Referencia</label>
                         <p><?php echo $reference ?></p>
-                        <input type="hidden" id="reference" name="reference" value="<?php echo $reference ?>">
+                        <input type="text" id="reference" name="reference" value="<?php echo $reference ?>">
                         <label for="">Cliente</label>
-                        <input type="hidden" id="currency" name="currency" value="COP">
+                        <input type="text" id="currency" name="currency" value="COP">
                         <p><?php echo $client ?></p>
                         <label for="">Valor</label>
                         <p>$ <?php  echo number_format($amount_in_cents, 0, ',', '.') ?></p>
-                        <input type="hidden" id="amount-in-cents" name="amount-in-cents" value="<?php  echo number_format($amount_in_cents,0,'','').'00' ?>">
+                        <input type="text" id="amount-in-cents" name="amount-in-cents" value="<?php  echo number_format($amount_in_cents,0,'','').'00' ?>">
                         <button type="submit" id="checkout-shipping" class="btn btn-block btn-sm btn-danger btn-quickview-product">Ir a pagar</button>
                     </form>
                 </div>

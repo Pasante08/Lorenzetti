@@ -46,7 +46,12 @@
                     <li class="nav-item"> <a class="nav-link" href="?controller=productosis&method=adminIndex">Producto sistema<span class="sr-only">(current)</span></a> </li>
                     <li class="nav-item"> <a class="nav-link" href="?controller=ayuda&method=adminIndex">Preguntas frecuentes<span class="sr-only">(current)</span></a> </li>
                     <li class="nav-item"> <a class="nav-link" href="?controller=factura&method=adminIndex">Facturas<span class="sr-only">(current)</span></a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="?controller=departamento&method=adminIndex">Departamentos<span class="sr-only">(current)</span></a> </li>
                 </ul>
             </div>
         </nav>
     </header>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/plugins/SweetAlert/dist/sweetalert2.all.min.js"></script>
+    </body>
+    </html>

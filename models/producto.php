@@ -29,7 +29,17 @@
             }
         }
 
-        public function getAll()
+        public function productsDes()
+        {
+            try {
+                return $this->pdo->productosMasVendidos();
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+
+        //Metodo para traer todos los productos
+        public function getAllStatus()
         {
             try {
                 $strSql = "SELECT * FROM producto";
@@ -39,10 +49,21 @@
             }
         }
 
+        //Metodo para traer los productos ACTIVOS
+        public function getAll()
+        {
+            try {
+                $strSql = "SELECT * FROM producto WHERE estado = 1";
+                return $this->pdo->select($strSql);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+
         public function filterByCat($id)
         {
             try {
-                $strSql = "SELECT * producto WHERE categoria_id=:id";
+                $strSql = "SELECT * producto WHERE categoria_id=:id AND estado = 1";
                 $arrayData = ['id' => $id];
                 return $this->pdo->select($strSql, $arrayData);
             } catch (PDOException $e) {
@@ -88,32 +109,24 @@
                     ON pc.producto_id = p.idProducto WHERE idProducto=:id";
                     $arrayData = ['id' => $id];
                     $row = $this->pdo->selectfetchP($strSql, $arrayData);
-                    /*print($row);
-                    die();*/
                     $item = [
                             'idProducto'    => $row['idProducto'],
                             'nombre'        => $row['nombre'],
                             'precio'        => $row['precio'],
                             'imagen'     => $row['imagen']
                         ];
-                        /*print_R($item);
-                        die();*/
                     return json_encode(['statuscode' => 200, 'item' => $item]);
                 } else {
                     $strSql = "SELECT p.idProducto, p.nombre, p.precio, p.ubicacion AS imagen FROM producto AS p
                     WHERE p.idProducto=:id";
                     $arrayData = ['id' => $id];
                     $row = $this->pdo->selectfetchP($strSql, $arrayData);
-                    /*print($row);
-                    die();*/
                     $item = [
                             'idProducto'    => $row['idProducto'],
                             'nombre'        => $row['nombre'],
                             'precio'        => $row['precio'],
                             'imagen'     => $row['imagen']
                         ];
-                        /*print_R($item);
-                        die();*/
                     return json_encode(['statuscode' => 200, 'item' => $item]);
                 }
             } catch (PDOException $e) {
@@ -135,9 +148,9 @@
         public function searchProducts($bool, $search)
         {
             if($bool) {
-                $strSql = "SELECT * FROM producto WHERE nombre LIKE '%$search%'";
+                $strSql = "SELECT * FROM producto WHERE nombre LIKE '%$search%' AND estado = 1";
             } else {
-                $strSql = "SELECT * FROM producto WHERE MATCH (nombre) AGAINST ( '$search' )";
+                $strSql = "SELECT * FROM producto WHERE MATCH (nombre) AGAINST ( '$search' ) AND estado = 1";
             }
             return $this->pdo->select($strSql);
         }
@@ -145,9 +158,9 @@
         public function searchProductByCat($bool, $search, $cat)
         {
             if($bool) {
-                $strSql = "SELECT * FROM producto WHERE nombre LIKE '%$search%' AND categoria_id LIKE '%$cat%'";
+                $strSql = "SELECT * FROM producto WHERE nombre LIKE '%$search%' AND categoria_id LIKE '%$cat%' AND estado = 1";
             } else {
-                $strSql = "SELECT * FROM producto WHERE MATCH (nombre) AGAINST ( '$search' ) AND categoria_id LIKE '%$cat%'";
+                $strSql = "SELECT * FROM producto WHERE MATCH (nombre) AGAINST ( '$search' ) AND categoria_id LIKE '%$cat%' AND estado = 1";
             }
             return $this->pdo->select($strSql);
         }
@@ -168,13 +181,13 @@
                         $strSql = "SELECT C.* FROM color AS c
                         INNER JOIN producto_color AS pc
                         ON c.idColor = pc.color_id
-                        WHERE pc.producto_id =:id";
+                        WHERE pc.producto_id =:id AND pc.estado=1";
                         break;
                     case 'voltaje':
                         $strSql = "SELECT v.* FROM voltaje AS v
                         INNER JOIN producto_voltaje AS pv
                         ON v.idVoltaje = pv.voltaje_id
-                        WHERE pv.producto_id =:id";
+                        WHERE pv.producto_id =:id AND pv.estado=1";
                         break;
                 }
                 $arrayData = ['id' => $id];
@@ -187,9 +200,24 @@
         public function productsByCat($id)
         {
             try {
-                $strSql = "SELECT * FROM producto WHERE categoria_id =:categoria_id";
+                $strSql = "SELECT * FROM producto WHERE categoria_id =:categoria_id AND estado = 1";
                 $arrayData = ['categoria_id' => $id];
                 return $this->pdo->select($strSql, $arrayData);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+
+        public function update($data)
+        {
+            try {
+                if($data['estado'] != 1) {
+                    $data['estado'] = 1;
+                } else {
+                    $data['estado'] = 0;
+                }
+                $strWhere = 'idProducto ='. $data['idProducto'];
+                $this->pdo->update('producto', $data, $strWhere);
             } catch (PDOException $e) {
                 die($e->getMessage());
             }

@@ -1,21 +1,39 @@
 $(document).ready(function() {
     var iva = 1.19;
     var color_id = !!document.getElementById("color_id");
+    //alert(color_id);
     var voltaje_id = !!document.getElementById("voltaje_id");
-    if (color_id) {
-        $("#color_id").change(function() {
-            if ($(this).val() == "") {
+    //alert(voltaje_id);
+    if (color_id && voltaje_id) {
+        //alert("llego");
+        //$("#btn-submit").prop("disabled", false);
+        $("#voltaje_id").change(function() {
+            if ($("#voltaje_id").val() == true) {
+                alert("volvio a llegar al if");
                 $("#btn-submit").prop("disabled", true);
             } else {
+                alert("volvio a llegar al else");
                 $("#btn-submit").prop("disabled", false);
                 $('#color_id').val($(".caxsalls a").attr('data-id'))
                 console.log("#caxsa" + $(this).attr('data-id'))
             }
         })
+
     } else if (voltaje_id) {
+        //alert("llego 2")
+        //$("#btn-submit").prop("disabled", false);
         $("#voltaje_id").change(function() {
             if ($(this).val() == "") {
                 $("#btn-submit").prop("disabled", true);
+            } else {
+                //$("#btn-submit").prop("disabled", true);
+                $("#btn-submit").prop("disabled", false);
+            }
+        })
+    } else if (color_id) {
+        $("#color_id").change(function() {
+            if ($(this).val() == "") {
+                $("#btn.submit").prop("disabled", true);
             } else {
                 $("#btn-submit").prop("disabled", false);
             }
@@ -295,20 +313,23 @@ $(document).ready(function() {
             }
         })
     })
-
-    /*$("#7frm-fac").submit(function(e) {
-        $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
-        e.preventDefault();
-        console.log($(this).serialize());
-        $.post("?controller=factura&method=addFac", $(this).serialize(), function(data) {
-            //window.location.href = "views/ajax/product-quick-view.php";
-            //confirm("Desea ir a pagar");
-            console.log(data);
-            alert("llego");
-        });
-    })*/
 })
 
+
+$('#frmcontacto').submit(function(e) {
+    $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+    e.preventDefault();
+    console.log($(this).serialize());
+    $.post("?controller=cliente&method=subscribe", $(this).serialize(), function() {
+        Swal.fire({
+            title: "Gracias!",
+            text: "Hemos recibido su mensaje",
+            icon: "success",
+            showCancelButton: false,
+            closeOnConfirm: true,
+        }, function() {});
+    });
+})
 
 
 $(".caxsalls1 li").click(
@@ -321,7 +342,6 @@ $(".caxsalls1 li").click(
         } else {
             $("#btn-submit").prop("disabled", false);
         }
-        //$("#btn-submit").prop("disabled", false);
     }
 );
 
@@ -338,7 +358,6 @@ $(".caxsalls a").click(
         else {
             $("#btn-submit").prop("disabled", false);
         }
-        //$("#btn-submit").prop("disabled", false);
     }
 );
 

@@ -36,7 +36,7 @@
         public function getAll()
         {
             try {
-                $strSql = "SELECT * FROM producto_voltaje";
+                $strSql = "SELECT * FROM voltaje";
                 return $this->pdo->select($strSql);
             } catch (PDOException $e) {
                 die($e->getMessage());

@@ -34,13 +34,7 @@
 													<img class="product-single-image" src="<?php echo $productoC->ubicacion ?>" data-zoom-image="<?php echo $productoC->imgxcien ?>" />
 												</div>
 											<?php endforeach ?>
-											<!--<div class="product-item">
-													<img class="product-single-image" src="assets/images/pastedImage.png" data-zoom-image="assets/images/pastedImage.png" />
-												</div>-->
 										<?php else : ?>
-											<!--<div class="product-item">
-													<img class="product-single-image" src="assets/images/pastedImage.png" data-zoom-image="assets/images/pastedImage.png" />
-												</div>-->
 											<div class="product-item">
 												<img class="product-single-image" src="<?php echo $product[0]->ubicacion ?>" data-zoom-image="<?php echo $product[0]->imgxcien ?>" />
 											</div>
@@ -81,7 +75,7 @@
 									<hr class="short-divider">
 
 									<div class="price-box">
-										<span class="product-price">$ <?php echo number_format($product[0]->precio); ?></span>
+										<span class="product-price">$ <?php echo number_format($product[0]->precio, 0, ',', '.'); ?></span>
 										<input type="hidden" value="<?php echo $product[0]->precio ?>" name="precio">
 									</div><!-- End .price-box -->
 
@@ -96,9 +90,10 @@
 												<ul class="config-swatch-list caxsalls">
 													<?php foreach ($colores as $color) : ?>
 														<input type="hidden" value="<?php echo $color->nombre ?>" name="C_nombre">
-														<input type="hidden" value="<?php echo $color->idColor ?>" name="color_id">
+														<!--<input type="text" value="<?php //echo $color->idColor ?>" name="color_id" id="color_id">-->
 														<a href="#" data-id="<?php echo $color->idColor ?>"><img src="<?php echo $color->imgColor ?>" alt="" style="margin-right: 3px;"></a>
 													<?php endforeach ?>
+													<input type="hidden" class="form-control" name="color_id" id="color_id" value="">
 												</ul>
 											<?php else : ?>
 											<?php endif ?>
@@ -106,11 +101,11 @@
 										<div class="product-single-filter mb-2">
 											<?php if (isset($voltajes)) : ?>
 												<input type="hidden" id="voltaje_id" name="voltaje_id" value="">
-												<label>Sizes:</label>
+												<label>Voltajes:</label>
 												<ul class="config-size-list caxsalls1">
 													<?php foreach ($voltajes as $voltaje) : ?>
 														<input type="hidden" value="<?php echo $voltaje->nombre ?>" name="V_nombre">
-														<li class="" value="<?php echo $voltaje->idVoltaje ?>"><a href=""><?php echo $voltaje->nombre ?></a></li>
+														<li class="" value="<?php echo $voltaje->idVoltaje ?>"><a id="voltaje_id" name="voltaje_id" href="#"><?php echo $voltaje->nombre ?></a></li>
 													<?php endforeach ?>
 												</ul>
 											<?php else : ?>

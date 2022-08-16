@@ -264,6 +264,7 @@
 
 <!-- Main JS File -->
 <script src="assets/js/main.min.js"></script>
+<script src="assets/plugins/SweetAlert/dist/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

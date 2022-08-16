@@ -6939,6 +6939,13 @@ header .separator {
     letter-spacing: .025em
 }
 
+.top-notice h4 {
+    color: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    font-family: Poppins, sans-serif;
+}
+
 .top-notice h5 {
     color: inherit;
     font-size: inherit;

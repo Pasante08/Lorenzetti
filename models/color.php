@@ -36,7 +36,7 @@
         public function getAll()
         {
             try {
-                $strSql = "SELECT * FROM producto_color";
+                $strSql = "SELECT * FROM color";
                 return $this->pdo->select($strSql);
             } catch (PDOException $e) {
                 die($e->getMessage());

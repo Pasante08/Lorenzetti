@@ -25,6 +25,7 @@ class ayudaController
 
     public function adminIndex()
     {
+        $helps = $this->ayudaModel->getAll();
         require 'views/Admin/templates/header.php';
         require 'views/Admin/ayuda/Index.php';
     }
@@ -33,6 +34,31 @@ class ayudaController
     {
         $helps = $this->ayudaModel->getAll();
         require 'views/FAQ.php';
+    }
+
+    public function edit()
+    {
+        if(isset($_REQUEST)){
+            print("Existe llamado post");
+            $help = $this->ayudaModel->getById($_REQUEST['id']);
+            require 'views/Admin/templates/header.php';
+            require 'views/Admin/ayuda/edit.php';
+        } else {
+            print("No existe llamado post");
+            die();
+        }
+    }
+
+    public function update()
+    {
+        if(isset($_POST)) {
+            $this->ayudaModel->edit($_POST);
+            $helps = $this->ayudaModel->getAll();
+            require 'views/Admin/templates/header.php';
+            require 'views/Admin/ayuda/Index.php';
+        } else {
+            echo "Error, accion no permitida";
+        }
     }
 
     public function addExcel()
@@ -62,13 +88,5 @@ class ayudaController
         }
     }
 
-    /*public function requestByCat()
-    {
-        if(isset($_REQUEST['id'])) {
-            $helps = $this->ayudaModel->getBycat($_REQUEST['id']);
-            require 'views/FAQ.php';
-        } else {
 
-        }
-    }*/
 }

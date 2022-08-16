@@ -21,21 +21,28 @@
           <table class='tutorial-table'>
             <thead>
               <tr>
+                <th>idProducto</th>
                 <th>Nombres</th>
                 <th>descripcion</th>
                 <th>imagen</th>
                 <th>ubicacion</th>
+                <th>estado</th>
                 <th>funciones</th>
               </tr>
             </thead>
               <tbody>
               <?php foreach ($productos as $producto) : ?>
                 <tr>
+                <td><?php echo $producto->idProducto ?></td>
                   <td><?php echo $producto->nombre ?></td>
                   <td><?php echo $producto->descripcion ?></td>
                   <td><?php echo $producto->imagen ?></td>
                   <td><?php echo $producto->ubicacion ?></td>
-                  <td><a href="?controller=producto&method=edit&id=<?php echo $producto->idProducto ?>">Editar</a></td>
+                  <td><?php echo $producto->estado ? '<span style="color:green">Activo</span>' : '<span style="color:red">Inactivo</span>'; ?></td>
+                  <td>
+                    <a href="?controller=producto&method=edit&id=<?php echo $producto->idProducto ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                    <a href="?controller=producto&method=updateStatus&id=<?php echo $producto->idProducto ?>&S=<?php echo $producto->estado ?>" <?php echo $producto->estado ? 'class="btn btn-success"' : 'class="btn btn-danger"'; ?>><?php echo $producto->estado ? '<i class="fas fa-lock-open"></i>' : '<i class="fas fa-lock"></i>'; ?></a>
+                  </td>
                 </tr>
                 <?php endforeach ?>
               </tbody>

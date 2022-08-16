@@ -21,15 +21,15 @@
                 <table class='tutorial-table'>
                     <thead>
                         <tr>
-                            <th>idColor</th>
                             <th>Nombre</th>
+                            <th>imgColor</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($colores as $color) : ?>
+                        <?php foreach ($color as $color) : ?>
                             <tr>
-                                <td><?php echo $color->idColor ?></td>
                                 <td><?php echo $color->nombre ?></td>
+                                <td><?php echo $color->imgColor ?></td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>

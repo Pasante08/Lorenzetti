@@ -1,6 +1,8 @@
 <?php
 
 require 'models/color.php';
+require 'models/productosColor.php';
+require 'models/producto.php';
 require 'vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -13,6 +15,8 @@ class colorController
     public function __construct()
     {
         $this->colorModel = new Color;
+        $this->productoColor = new ProductoColor;
+        $this->productoModel = new Producto;
         $this->spreadsheet = new Spreadsheet;
     }
 
@@ -24,6 +28,7 @@ class colorController
 
     public function adminIndex()
     {
+        $producto_color = $this->productoColor->getAll();
         require 'views/Admin/templates/header.php';
         require 'views/Admin/color/addColor.php';
     }
@@ -31,6 +36,7 @@ class colorController
     //METODO TEMPORAL PARA AGREGAR COLORES
     public function addColor()
     {
+        $color = $this->colorModel->getAll();
         require 'views/Admin/templates/header.php';
         require 'views/Admin/color/addColors.php';
     }
@@ -94,6 +100,48 @@ class colorController
             }
         } else {
 
+        }
+    }
+
+    public function editPC()
+    {
+        if(isset($_REQUEST['id']))
+        {
+            $producto_color = $this->productoColor->getById($_REQUEST['id']);
+            $productos = $this->productoModel->getAll();
+            $colores = $this->colorModel->getAll();
+            require 'views/Admin/templates/header.php';
+            require 'views/Admin/color/editPC.php';
+        } else {
+            echo 'No se encontro el ID';
+        }
+    }
+
+    public function update()
+    {
+        if(isset($_POST)) {
+            $this->productoColor->editPC($_POST);
+            $productos = $this->productoModel->getAll();
+            $colores = $this->colorModel->getAll();
+            require 'views/Admin/templates/header.php';
+            require 'views/Admin/color/addColor.php';
+        } else {
+            echo "Error, accion no permitida";
+        }
+    }
+
+    //Metodo para actualizar estado de un productoColor
+    public function updateStatus()
+    {
+        if(isset($_REQUEST)) {
+            $data['idProductoColor'] = $_REQUEST['id'];
+            $data['estado'] = $_REQUEST['S'];
+            $this->productoColor->updatePC($data);
+            $producto_color = $this->productoColor->getAll();
+            //print_R($producto_color);
+            //die();
+            require 'views/Admin/templates/header.php';
+            require 'views/Admin/color/addColor.php';
         }
     }
 }

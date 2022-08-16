@@ -15,6 +15,8 @@ require 'models/cliente.php';
 require 'models/carrito.php';
 require 'models/detalle.php';
 require 'models/productoSistema.php';
+require 'models/departamento.php';
+require 'models/municipio.php';
 
 class facturaController
 {
@@ -23,6 +25,8 @@ class facturaController
     private $prdtsistemaModel;
     private $detallecoModel;
     private $productoModel;
+    private $departamentoModel;
+    private $municipioModel;
 
     public function __construct()
     {
@@ -32,6 +36,8 @@ class facturaController
         $this->prdtsistemaModel = new productoSistema;
         $this->detallecoModel = new Detalle;
         $this->productoModel = new Producto;
+        $this->departamentoModel = new Departamento;
+        $this->municipioModel = new Municipio;
         $this->mail = new PHPMailer(true);
     }
 
@@ -52,16 +58,121 @@ class facturaController
         }
     }
 
+    public function update()
+    {
+        if(isset($_POST)) {
+            if($_POST['guia']){
+                
+                $this->facturaModel->editFactura($_POST);
+                $request = $this->facturaModel->selectFacturas($_POST['idFactura']);
+                /*var_dump($request);
+                die();*/
+            $total = 0;
+            foreach ($request as $key => $value) {
+                $total += $request[$key]->precio;
+            }
+            $total += $request[0]->vEnvio;
+            $message = "<html><body>";
+            $message .= "<table width='100%' bgcolor='#e0e0e0' cellpadding='0' cellspacing='0' border='0'>";
+            $message .= "<tr><td>";
+            $message .= "<table align='center' width='100%' border='0' cellpadding='0' cellspacing='0' style='max-width:650px; background-color:#fff; font-family:MyriadProBold, sans-serif;'>";
+            $message .=  "<thead>
+            <tr height='80'>
+                <th colspan='4' style='background-color:#f5f5f5; border-bottom:solid 1px #bdbdbd; font-family:MyriadProBold, sans-serif; color:#333; font-size:34px;'><img src='https://sistemasnuruena.com.co/assets/images/logo.png' alt='Lorenzetti'></th>
+            </tr>
+                </thead>";
+            $message .= "<tbody>
+            <tr>
+                <td colspan='4' style='padding:15px;'>
+                    <p style='font-size:20px; text-align:center;'>Hola, <span style='font-weight: bold;'>". $request[0]->cliente ."</span></p>
+                    <hr/>
+                    <p style='font-size:18px; text-align:center; font-weight: bold;'>GRACIAS POR COMPRAR EN LORENZETTI.NET.CO <br> ¡TU PEDIDO HA SIDO ENVIADO POR SERVIENTREGA!</p>
+                    <P style='font-size:18px; text-align:center; color:#D71921; font-weight: bold;'>N° Guía: ". $request[0]->guia ."</P>
+                    <P style='font-size:15px; text-align:center;'>Fecha: ". $request[0]->fecha ."</P>
+                    <hr>
+                    <p style='text-align:center;'>Recuerda que el tiempo de entrega son 3 dias habiles a partir de la confirmación del pago.</p>
+                    <table align='center' width='100%' border='0' style='height:auto; width:100%; max-width:100%;'>
+                        <thead>
+                            <tr style='text-align:center;' height='50'>
+                                <th style='background-color:#D71921; color:#fff; border-bottom:solid 1px #bdbdbd; font-family:MyriadProBold, sans-serif; font-weight: bold;'>Producto</th>
+                                <th style='background-color:#D71921; color:#fff; border-bottom:solid 1px #bdbdbd; font-family:MyriadProBold, sans-serif; font-weight: bold;'>Cantidad</th>
+                                <th style='background-color:#D71921; color:#fff; border-bottom:solid 1px #bdbdbd; font-family:MyriadProBold, sans-serif; font-weight: bold;'>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+                        foreach ($request as $factura) {
+                            $message .= "<tr height='30'>
+                                <td style='border-bottom:solid 1px #bdbdbd;'>". $factura->producto ."</td>
+                                <td style='text-align:center; border-bottom:solid 1px #bdbdbd;'>". $factura->cantidad ."</td>
+                                <td style='text-align:center; border-bottom:solid 1px #bdbdbd;'>". number_format($factura->precio, 0, ',', '.') ."</td>
+                            </tr>";
+                        }
+            $message .= "<tr height='30'>
+                                <td></td>
+                                <td style='font-weight: bold;'>Valor envío</td>
+                                <td style='text-align:center; border-bottom:solid 1px #bdbdbd;'>". number_format($request[0]->vEnvio, 0, ',', '.') ."</td>
+                            </tr>
+                            <tr height='30'>
+                                <td></td>
+                                <td style='font-weight: bold;'>TOTAL</td>
+                                <td style='text-align:center; border-bottom:solid 1px #bdbdbd;'>". number_format($total, 0, ',', '.') ."</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>";
+            $message .= "</table>";
+    
+            $message .= "</td></tr>";
+            $message .= "</table>";
+            
+            $message .= "</body></html>";
+            try {
+                //Server settings
+                $this->mail->SMTPDebug = 0;                     //Enable verbose debug output
+                $this->mail->isSMTP();                                            //Send using SMTP
+                $this->mail->Host       = 'mail.fenusa.com.co';                     //Set the SMTP server to send through
+                $this->mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                $this->mail->Username   = 'fenusa@fenusa.com.co';                     //SMTP username
+                $this->mail->Password   = 'Fenusa2022*';                               //SMTP password
+                $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $this->mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                
+                $this->mail->setFrom('fenusa@fenusa.com.co', 'fenusa.com.co'); 
+                $this->mail->addAddress($request[0]->correo, $request[0]->cliente);
+                $this->mail->addAddress("supervisor.operaciones@fenusa.com.co", "supervisor operaciones");     //Add a recipient
+    
+                //Content
+                $this->mail->isHTML(true);                                  //Set email format to HTML
+                $this->mail->Subject = 'Envio pedido Lorenzetti '.$request[0]->refac;
+                $this->mail->Body    = $message;
+    
+                $this->mail->send();
+            } catch (Exception $e) {
+                echo "Hubo un error al enviar el mensaje: {$this->mail->ErrorInfo}";
+                die();
+            }
+                header("Location: ?controller=factura&method=adminIndex");
+            } else {
+                header("Location: ?controller=factura&method=adminIndex");
+            }
+        } else {
+            echo "Error, accion no permitida";
+        }
+    }
+
     public function viewFac()
     {
         if(isset($_GET['id'])) {
             $factura = $this->facturaModel->view($_GET['id']);
             $total = 0;
-            print_r($factura[0]->vEnvio);
             foreach ($factura as $key => $value) {
                 $total += $factura[$key]->precio;
             }
             $total += $factura[0]->vEnvio;
+            $municipios = $this->municipioModel->getAll();
+            $departamentos = $this->departamentoModel->getAll();
             require 'views/Admin/templates/header.php';
             require 'views/Admin/facturas/view.php';
         }
@@ -96,6 +207,7 @@ class facturaController
             }
             $client = $_POST['cliente'];
             $amount_in_cents = $_POST['total'];
+            
             require 'views/pedido.php';
         } else {
             print("No llego");
@@ -206,22 +318,22 @@ class facturaController
             $message .= "</body></html>";
             try {
                 //Server settings
-                //$this->mail->SMTPDebug = SMTP::DEBUG_SERVER; 
                 $this->mail->SMTPDebug = 0;                     //Enable verbose debug output
                 $this->mail->isSMTP();                                            //Send using SMTP
-                $this->mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                $this->mail->Host       = 'mail.fenusa.com.co';                     //Set the SMTP server to send through
                 $this->mail->SMTPAuth   = true;                                   //Enable SMTP authentication
                 $this->mail->Username   = 'fenusa@fenusa.com.co';                     //SMTP username
-                $this->mail->Password   = 'bloqueado1234';                               //SMTP password
+                $this->mail->Password   = 'Fenusa2022*';                               //SMTP password
                 $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
                 $this->mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
                 
                 $this->mail->setFrom('fenusa@fenusa.com.co', 'fenusa.com.co'); 
-                $this->mail->addAddress($request[0]->correo, $request[0]->cliente);    //Add a recipient
+                $this->mail->addAddress($request[0]->correo, $request[0]->cliente);
+                $this->mail->addAddress('asistentesr.sistemas@fenusa.com.co', 'Asistente Senior Sistemas');    //Add a recipient
     
                 //Content
                 $this->mail->isHTML(true);                                  //Set email format to HTML
-                $this->mail->Subject = 'Correo de prueba';
+                $this->mail->Subject = 'Pedido';
                 $this->mail->Body    = $message;
     
                 $this->mail->send();
@@ -310,15 +422,15 @@ class facturaController
             //$this->mail->SMTPDebug = SMTP::DEBUG_SERVER; 
             $this->mail->SMTPDebug = 0;                     //Enable verbose debug output
             $this->mail->isSMTP();                                            //Send using SMTP
-            $this->mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $this->mail->Host       = 'mail.fenusa.com.co';                     //Set the SMTP server to send through
             $this->mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $this->mail->Username   = 'fenusa@fenusa.com.co';                     //SMTP username
-            $this->mail->Password   = 'bloqueado1234';                               //SMTP password
+            $this->mail->Password   = 'Fenusa2022*';                               //SMTP password
             $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $this->mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             
             $this->mail->setFrom('fenusa@fenusa.com.co', 'fenusa.com.co'); 
-            $this->mail->addAddress('asistentesr.sistemas@fenusa.com.co', 'Asistente Senior Sistemas');    //Add a recipient
+            $this->mail->addAddress('jmarceloangarita@gmail.com', 'Asistente Senior Sistemas');    //Add a recipient
 
             //Content
             $this->mail->isHTML(true);                                  //Set email format to HTML

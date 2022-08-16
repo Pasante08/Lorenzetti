@@ -16,8 +16,9 @@ USE lorenzetti;
 CREATE TABLE producto (
 	idProducto INT(12) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(100) NOT NULL,
-	descripcion MEDIUMTEXT NULL,
+	descripcion MEDIUMTEXT NOT NULL,
 	precio DOUBLE NOT NULL,
+	precioSI DOUBLE NOT NULL,
 	imagen VARCHAR(45) NOT NULL,
 	ubicacion VARCHAR(100) NOT NULL,
 	imgxcien VARCHAR(100) NOT NULL,
@@ -54,13 +55,14 @@ CREATE TABLE cliente (
     telefono VARCHAR(12) NOT NULL
 );
 
-CREATE TABLE departamento (
-	idDepartamento INT(12) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	nombre VARCHAR(45) NOT NULL
+CREATE TABLE departamentos (
+	idDepartamento BIGINT(12) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	nombre VARCHAR(45) NOT NULL,
+	codigo INT(20) NOT NULL
 );
 
-CREATE TABLE municipio (
-	idMunicipio INT(12) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+CREATE TABLE municipios (
+	idMunicipio BIGINT(12) PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	departamento_id BIGINT(20) NOT NULL,
 	codigo INT(11) NOT NULL,
 	nombre VARCHAR(255) NOT NULL,
@@ -77,15 +79,16 @@ CREATE TABLE factura (
 	departamento_id BIGINT(20) NULL,
 	municipio_id BIGINT(20) NULL,
 	direccion VARCHAR(100) NOT NULL,
-	vEnvio DOUBLE NOT NULL
+	vEnvio DOUBLE NOT NULL,
+	guia VARCHAR(30) NULL
 );
 
 CREATE TABLE detalle_factura (
 	idDetalle INT(12) PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	cantidad INT(12) NOT NULL,
-	precio DOUBLE NOT NULL,
 	producto_id INT(12) NOT NULL,
-	factura_id INT(12) NOT NULL
+	factura_id INT(12) NOT NULL,
+	precio DOUBLE NOT NULL
 );
 
 CREATE TABLE fichasTec (
@@ -101,15 +104,18 @@ CREATE TABLE mod_Pago (
 );
 
 CREATE TABLE producto_voltaje (
-  producto_id INT(12) NOT NULL,
-  voltaje_id INT(12) NOT NULL
+	idProductoVoltaje INT(12) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  	producto_id INT(12) NOT NULL,
+  	voltaje_id INT(12) NOT NULL
 );
 
 CREATE TABLE producto_color (
+	idProductoColor INT(12) PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	producto_id INT(12) NOT NULL,
 	color_id INT(12) NOT NULL,
 	imagen VARCHAR(45) NOT NULL,
-	ubicacion VARCHAR(100) NOT NULL
+	ubicacion VARCHAR(100) NOT NULL,
+	imgxcien VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE productosistema (
@@ -118,26 +124,15 @@ CREATE TABLE productosistema (
 	nombre VARCHAR(100) NOT NULL,
 	voltaje_id INT(12) NULL,
 	color_id INT(12) NULL,
-	producto_id INT(12) NOT NULL
+	producto_id INT(12) NOT NULL,
+	precio DOUBLE NULL
 );
 
 CREATE TABLE helpfaq (
-	idHelpfaq INT(12) NOT NULL PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	idHelpfaq INT(12) PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	question VARCHAR(100) NOT NULL,
-	answer VARCHAR(200) NOT NULL,
-	/*categoria_id INT(12) NOT NULL*/
-)
-
-/*ALTER TABLE
-	helpfaq
-ADD CONSTRAINT
-	fk_helpfaqCategoria
-FOREIGN KEY
-	(categoria_id)
-REFERENCES
-	categoria(idCategoria)
-ON DELETE CASCADE
-ON UPDATE CASCADE;*/
+	answer VARCHAR(200) NOT NULL
+);
 
 ALTER TABLE producto_voltaje
   ADD KEY fk_productoVoltaje (producto_id),
@@ -150,7 +145,7 @@ ALTER TABLE producto_color
 ALTER TABLE
 	factura
 ADD CONSTRAINT
-	fk_departamentoFactura
+	fk_departamentosFactura
 FOREIGN KEY
 	(departamento_id)
 REFERENCES
@@ -158,7 +153,7 @@ REFERENCES
 ON DELETE CASCADE
 ON UPDATE CASCADE,
 ADD CONSTRAINT
-	fk_municipioFactura
+	fk_municipiosFactura
 FOREIGN KEY
 	(municipio_id)
 REFERENCES
@@ -287,13 +282,13 @@ ON DELETE CASCADE
 ON UPDATE CASCADE;
 
 ALTER TABLE
-	municipio
+	municipios
 ADD CONSTRAINT
-	fk_departamentoMunicipio
+	fk_departamentosMunicipios
 FOREIGN KEY
 	(departamento_id)
 REFERENCES
-	departamento(idDepartamento)
+	departamentos(idDepartamento)
 ON DELETE CASCADE
 ON UPDATE CASCADE;
 

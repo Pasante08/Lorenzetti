@@ -125,4 +125,16 @@ class Database extends PDO
 			die($e->getMessage());
 		}
 	}
+
+	//Metodo productos mas vendidos
+	public function productosMasVendidos($fetchMode = PDO::FETCH_OBJ)
+	{
+		try {
+			$query = $this->prepare("CALL productos_mas_vendidos()");
+			$query->execute();
+			return $query->fetchAll($fetchMode);
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
 }

@@ -20,20 +20,24 @@
           <table class='tutorial-table'>
             <thead>
               <tr>
-                <th>Nombres</th>
-                <th>descripcion</th>
-                <th>imagen</th>
-                <th>ubicacion</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>voltaje_id</th>
+                <th>color_id</th>
+                <th>producto_id</th>
+                <th>precio</th>
                 <th>funciones</th>
               </tr>
             </thead>
               <tbody>
               <?php foreach ($productos as $producto) : ?>
                 <tr>
+                  <td><?php echo $producto->codigo ?></td>
                   <td><?php echo $producto->nombre ?></td>
-                  <td><?php echo $producto->descripcion ?></td>
-                  <td><?php echo $producto->imagen ?></td>
-                  <td><?php echo $producto->ubicacion ?></td>
+                  <td><?php echo $producto->voltaje_id ?></td>
+                  <td><?php echo $producto->color_id ?></td>
+                  <td><?php echo $producto->producto_id ?></td>
+                  <td><?php echo $producto->precio ?></td>
                   <td><a href="?controller=productosis&method=edit&id=<?php echo $producto->idProducto ?>">Editar</a></td>
                 </tr>
                 <?php endforeach ?>

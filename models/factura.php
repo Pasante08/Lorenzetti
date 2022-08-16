@@ -40,6 +40,17 @@
             }
         }
 
+        public function editFactura($data)
+        {
+            try {
+                $strWhere = 'idFactura = '. $data['idFactura'];
+                $table = 'factura';
+                $this->pdo->update($table, $data, $strWhere);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+
         public function view($id)
         {
             try {

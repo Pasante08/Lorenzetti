@@ -48,8 +48,8 @@
                         <div class="widget widget-newsletter">
                             <h4 class="widget-title">Suscribase en nuestro boletín</h4>
                             <p>y reciba información de promociones y capacitaciones</p>
-                            <form action="#">
-                                <input type="email" class="form-control" placeholder="Ingrese su email" required>
+                            <form action="#" id="frmcontacto">
+                                <input type="email" class="form-control" id="contact-email" name="contact-email" placeholder="Ingrese su email" required>
 
                                 <input type="submit" class="btn" value="Ir!">
                             </form>
@@ -74,87 +74,23 @@
             <span class="mobile-menu-close"><i class="icon-cancel"></i></span>
             <nav class="mobile-nav">
                 <ul class="mobile-menu">
-                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="active"><a href="?controller=producto">Inicio</a></li>
+                    <li><a href="?controller=producto&method=getAll">Productos</a></li>
                     <li>
-                        <a href="category.html">Categories</a>
+                        <a href="#" class="nolink">Catálogos</a>
                         <ul>
-                            <li><a href="category-banner-full-width.html">Full Width Banner</a></li>
-                            <li><a href="category-banner-boxed-slider.html">Boxed Slider Banner</a></li>
-                            <li><a href="category-banner-boxed-image.html">Boxed Image Banner</a></li>
-                            <li><a href="category-sidebar-left.html">Left Sidebar</a></li>
-                            <li><a href="category-sidebar-right.html">Right Sidebar</a></li>
-                            <li><a href="category-flex-grid.html">Product Flex Grid</a></li>
-                            <li><a href="category-horizontal-filter1.html">Horizontal Filter 1</a></li>
-                            <li><a href="category-horizontal-filter2.html">Horizontal Filter 2</a></li>
-                            <li><a href="category-list.html">Product List Item Types</a></li>
-                            <li><a href="category-infinite-scroll.html">Ajax Infinite Scroll<span class="tip tip-new">New</span></a></li>
-                            <li><a href="category-3col.html">3 Columns Products</a></li>
-                            <li><a href="category-4col.html">4 Columns Products</a></li>
-                            <li><a href="category-5col.html">5 Columns Products</a></li>
-                            <li><a href="category-6col.html">6 Columns Products</a></li>
-                            <li><a href="category-7col.html">7 Columns Products</a></li>
-                            <li><a href="category-8col.html">8 Columns Products</a></li>
+                            <li><a href="assets/files/pdfs/Catalogo_Duchas_Lorenzetti.pdf" target="_blank">Catálogo duchas</a></li>
+                            <li><a href="assets/files/pdfs/Catalogo_Filtros_Lorenzetti.pdf" target="_blank">Catálogo filtros</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="product.html">Products</a>
-                        <ul>
-                            <li>
-                                <a href="#">Variations</a>
-                                <ul>
-                                    <li><a href="product.html">Horizontal Thumbnails</a></li>
-                                    <li><a href="product-full-width.html">Vertical Thumbnails<span class="tip tip-hot">Hot!</span></a></li>
-                                    <li><a href="product.html">Inner Zoom</a></li>
-                                    <li><a href="product-addcart-sticky.html">Addtocart Sticky</a></li>
-                                    <li><a href="product-sidebar-left.html">Accordion Tabs</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Variations</a>
-                                <ul>
-                                    <li><a href="product-sticky-tab.html">Sticky Tabs</a></li>
-                                    <li><a href="product-simple.html">Simple Product</a></li>
-                                    <li><a href="product-sidebar-left.html">With Left Sidebar</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Product Layout Types</a>
-                                <ul>
-                                    <li><a href="product.html">Default Layout</a></li>
-                                    <li><a href="product-extended-layout.html">Extended Layout</a></li>
-                                    <li><a href="product-full-width.html">Full Width Layout</a></li>
-                                    <li><a href="product-grid-layout.html">Grid Images Layout</a></li>
-                                    <li><a href="product-sticky-both.html">Sticky Both Side Info<span class="tip tip-hot">Hot!</span></a></li>
-                                    <li><a href="product-sticky-info.html">Sticky Right Side Info</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <a href="?controller=producto&method=services">Servicio técnico</a>
                     </li>
                     <li>
-                        <a href="#">Pages<span class="tip tip-hot">Hot!</span></a>
-                        <ul>
-                            <li><a href="cart.html">Shopping Cart</a></li>
-                            <li>
-                                <a href="#">Checkout</a>
-                                <ul>
-                                    <li><a href="checkout-shipping.html">Checkout Shipping</a></li>
-                                    <li><a href="checkout-shipping-2.html">Checkout Shipping 2</a></li>
-                                    <li><a href="checkout-review.html">Checkout Review</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="#" class="login-link">Login</a></li>
-                            <li><a href="forgot-password.html">Forgot Password</a></li>
-                        </ul>
+                        <a href="?controller=producto&method=aboutUs">Quienes Somos</a>
                     </li>
-                    <li><a href="blog.html">Blog</a>
-                        <ul>
-                            <li><a href="single.html">Blog Post</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="#">Special Offer!<span class="tip tip-hot">Hot!</span></a></li>
-                    <li><a href="https://1.envato.market/DdLk5" target="_blank">Buy Porto!</a></li>
+                    <li><a href="?controller=producto&method=contact">Contactenos</a></li>
+                    <li><a href="?controller=ayuda&method=ayuda">Preguntas Frecuente</a></li>
                 </ul>
             </nav><!-- End .mobile-nav -->
 
@@ -212,7 +148,6 @@
     <div class="modal-body add-cart-box text-center">
     <div class="btn-actions">
         <?php $final = 100000;
-        //$dato = $_REQUEST['id'];
         ?>
         </div>
         </div>
@@ -229,6 +164,7 @@
     <!-- Main JS File -->
     <script src="assets/js/main.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/plugins/SweetAlert/dist/sweetalert2.all.min.js"></script>
     </body>
 
     </html>

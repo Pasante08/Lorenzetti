@@ -31,7 +31,7 @@
 					<div class="col-md-8">
 						<h2 class="light-title"><strong>CONTÁCTENOS</strong></h2>
 
-						<form action="#">
+						<form action="#" id="frmcontacto">
 							<div class="form-group required-field">
 								<label for="contact-name">Nombre</label>
 								<input type="text" class="form-control" id="contact-name" name="contact-name" required>
@@ -64,17 +64,17 @@
 						<div class="contact-info">
 							<div>
 								<i class="icon-phone"></i>
-								<p><a href="tel:">601 390 6666 EXT 1010</a></p>
-								<p><a href="tel:">601 390 6666 EXT 1013</a></p>
+								<p><a href="tel:6013906666,1010">601 390 6666 EXT 1010</a></p>
+								<p><a href="tel:6013906666,1013">601 390 6666 EXT 1013</a></p>
 							</div>
 							<div>
 								<i class="icon-mobile"></i>
-								<p><a href="tel:">320 348 7184</a></p>
+								<p><a href="tel:+573203487184">320 348 7184</a></p>
 							</div>
 							<div>
 								<i class="icon-mail-alt"></i>
-								<p><a href="mailto:#">asesor.mostracor4@fenusa.com.co</a></p>
-								<p><a href="mailto:#">fenusa@fenusa.com.co</a></p>
+								<p><a href="mailto:asesor.mostrador4@fenusa.com.co">asesor.mostrador4@fenusa.com.co</a></p>
+								<p><a href="mailto:fenusa@fenusa.com.co">fenusa@fenusa.com.co</a></p>
 							</div>
 							<div>
 								<i class="icon-direction"></i>

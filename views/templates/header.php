@@ -43,6 +43,13 @@ $categorias = $categoriaModel->getAll();
     <link rel="stylesheet" href="assets/css/style.min.css">
     <link rel="stylesheet" type="text/css" href="assets/vendor/fontawesome-free/css/all.min.css">
     <script type="text/javascript" src="https://checkout.wompi.co/widget.js"></script>
+    <!-- Global site tag (gtag.js) - Google Ads: 10928902235 --> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10928902235"></script> 
+    <script> 
+        window.dataLayer = window.dataLayer || []; 
+        function gtag(){dataLayer.push(arguments);} 
+        gtag('js', new Date()); 
+        gtag('config', 'AW-10928902235'); </script>
 </head>
 
 <body>

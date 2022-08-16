@@ -23,12 +23,13 @@ class productoController
     public function Index()
     {
         $productos = $this->productoModel->getAll();
+        $products_Dest = $this->productoModel->productsDes();
         require 'views/index.php';
     }
 
     public function adminIndex()
     {
-        $productos = $this->productoModel->getAll();
+        $productos = $this->productoModel->getAllStatus();
         require 'views/Admin/templates/header.php';
         require 'views/Admin/producto/addProduct.php';
     }
@@ -186,6 +187,18 @@ class productoController
             $productosColor = $this->prdtColorModel->getById($_GET['id']);
             $productos = $this->productoModel->productLimit($product[0]->categoria_id);
             require 'views/product.php';
+        }
+    }
+
+    public function updateStatus()
+    {
+        if(isset($_REQUEST)) {
+            $data['idProducto'] = $_REQUEST['id'];
+            $data['estado'] = $_REQUEST['S'];
+            $this->productoModel->update($data);
+            $productos = $this->productoModel->getAllStatus();
+            require 'views/Admin/templates/header.php';
+            require 'views/Admin/producto/addProduct.php';
         }
     }
 

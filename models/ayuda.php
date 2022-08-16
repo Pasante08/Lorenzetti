@@ -34,6 +34,28 @@
             }
         }
 
+        public function getById($id)
+        {
+            try {
+                $strSql = "SELECT * FROM helpfaq WHERE idHelpfaq=:id";
+                $arrayData = ['id' => $id];
+                return $this->pdo->select($strSql, $arrayData);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+
+        public function edit($data)
+        {
+            try {
+                $strWhere = 'idHelpfaq ='. $data['idHelpfaq'];
+                $table = 'helpfaq';
+                $this->pdo->update($table, $data, $strWhere);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+
         public function getBycat($idCat)
         {
             try {

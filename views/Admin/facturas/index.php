@@ -8,7 +8,7 @@
                         <tr>
                             <th>N° Factura</th>
                             <th>Fecha Factura</th>
-                            <!--<th>Guia</th>-->
+                            <th>Referencia pago</th>
                             <th>Cliente</th>
                             <th>Función</th>
                         </tr>
@@ -18,6 +18,7 @@
                             <tr>
                                 <td><?php echo $factura->idFactura ?></td>
                                 <td><?php echo $factura->fecha ?></td>
+                                <td><?php echo $factura->refac ?></td>
                                 <!--<td><?php //$factura-> 
                                         ?></td>-->
                                 <td><?php echo $factura->nombre ?></td>

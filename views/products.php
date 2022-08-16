@@ -71,7 +71,7 @@
 								
 							</div><!-- End .product-container -->
 							<div class="price-box">
-								<span class="product-price">$ <?php echo number_format($product->precio) ?></span>
+								<span class="product-price">$ <?php echo number_format($product->precio, 0, ',', '.') ?></span>
 							</div><!-- End .price-box -->
 						</div><!-- End .product-details -->
 					</div>

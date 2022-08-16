@@ -55,7 +55,13 @@ class municipioController
                 }
                 $municipios = $this->municipioModel->getAll();
                 require 'views/index.php';
+            } else {
+                echo "Extension incorrecta";
+                die();
             }
+        } else {
+            echo "Error al guardar";
+            die();
         }
     }
 }

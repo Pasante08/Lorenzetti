@@ -73,8 +73,8 @@
                             }
                         }
                     }">
-                    <?php foreach ($productos as $producto) : ?>
-                        <?php if($producto->estado == 'SI') : ?>
+                    <?php foreach ($products_Dest as $producto) : ?>
+                        <?php //if($producto->estado == 'SI') : ?>
                     <div class="product-default left-details">
                             <figure>
                                 <a href="?controller=producto&method=viewProduct&id=<?php echo $producto->idProducto ?>">
@@ -92,15 +92,15 @@
                                 <div class="ratings-container">
                                 </div><!-- End .product-container -->
                                 <div class="price-box">
-                                    <span class="product-price">$ <?php echo number_format($producto->precio) ?></span>
+                                    <span class="product-price">$ <?php echo number_format($producto->precio, 0, ',', '.') ?></span>
                                 </div><!-- End .price-box -->
                                 <div class="product-action">
                                     <a href="?controller=producto&method=viewProduct&id=<?php echo $producto->idProducto ?>" class="btn-icon btn-add-cart btn-quickview-product">AÑADIR A LA BOLSA</a>
                                 </div>
                             </div><!-- End .product-details -->
                         </div>
-                        <?php else : ?>
-                        <?php endif ?>
+                        <?php //else : ?>
+                        <?php //endif ?>
                         <?php endforeach ?>
                 </div>
 

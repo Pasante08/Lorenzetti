@@ -31,4 +31,41 @@
                 die($e->getMessage());
             }
         }
+
+        public function getById($id)
+        {
+            try {
+                $strSql = "SELECT * FROM producto_voltaje WHERE idProductoVoltaje=:idProductoVoltaje";
+                $arrayData = ['idProductoVoltaje' => $id];
+                return $this->pdo->select($strSql, $arrayData);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+
+        public function editPV($data)
+        {
+            try {
+                $strWhere = 'idProductoVoltaje ='. $data['idProductoVoltaje'];
+                $table = 'producto_voltaje';
+                $this->pdo->update($table, $data, $strWhere);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+
+        public function updatePC($data)
+        {
+            try {
+                if($data['estado'] != 1) {
+                    $data['estado'] = 1;
+                } else {
+                    $data['estado'] = 0;
+                }
+                $strWhere = 'idProductoVoltaje ='. $data['idProductoVoltaje'];
+                $this->pdo->update('producto_voltaje', $data, $strWhere);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
     }

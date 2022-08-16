@@ -37,6 +37,38 @@
 						</select>
 					</div>
 					<div class="form-group">
+                        <label>Estado</label>
+                        <?php
+                        if ($producto[0]->estado == 1) {
+                            echo '<div class="form-check">
+                            <input value="1" class="form-check-input" type="radio" name="estado" id="estado" checked>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Activo
+                            </label>
+                            </div>';
+                            echo '<div class="form-check">
+                            <input value="0" class="form-check-input" type="radio" name="estado" id="estado">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Inactivo
+                            </label>
+                        </div>';
+                        } else {
+                            echo '<div class="form-check">
+                            <input value="1" class="form-check-input" type="radio" name="estado" id="estado">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Activo
+                            </label>
+                            </div>';
+                            echo '<div class="form-check">
+                            <input value="0" class="form-check-input" type="radio" name="estado" id="estado" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Inactivo
+                            </label>
+                        </div>';
+                        }
+                        ?>
+                    </div>
+					<div class="form-group">
 						<button class="btn btn-primary">Editar</button>
 					</div>
 				</form>
