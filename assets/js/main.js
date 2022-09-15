@@ -332,19 +332,6 @@ $('#frmcontacto').submit(function(e) {
 })
 
 
-$(".caxsalls1 li").click(
-    function(e) {
-        e.preventDefault();
-        $('#voltaje_id').val($(this).attr("value"))
-        console.log("#caxsa" + $(this).attr('value'))
-        if ($('#color_id').val() == "") {
-            $("#btn-submit").prop("disabled", true);
-        } else {
-            $("#btn-submit").prop("disabled", false);
-        }
-    }
-);
-
 $(".caxsalls a").click(
     function(e) {
         e.preventDefault();
