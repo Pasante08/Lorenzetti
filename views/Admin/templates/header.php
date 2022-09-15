@@ -24,11 +24,18 @@
             s.parentNode.insertBefore(wf, s);
         })(document);
     </script>
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Main CSS File -->
+    <!--<link rel="stylesheet" href="assets/css/style.min.css">-->
+    <link rel="stylesheet" type="text/css" href="assets/vendor/fontawesome-free/css/all.min.css">
+
 
     <!-- Plugins CSS File -->
     <!--<link rel="stylesheet" href="assets/css/style.css">-->
-    <link rel="stylesheet" type="text/css" href="assets/vendor/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="assets/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">-->
 </head>
 
 <body>
@@ -53,5 +60,6 @@
     </header>
     <script src="assets/js/main.js"></script>
     <script src="assets/plugins/SweetAlert/dist/sweetalert2.all.min.js"></script>
-    </body>
-    </html>
+</body>
+
+</html>

@@ -29,19 +29,14 @@ require 'models/departamento.php';
             if(isset($_POST['id'])) {
                 if(isset($_POST['color_id'])) {
                     if(isset($_POST['voltaje_id'])) {
-                        //echo "tiene color y voltaje";
                         $color = $this->colorModel->getById($_POST['color_id']);
                         $voltaje = $this->voltajeModel->getById($_POST['voltaje_id']);
                         $filtros = array("idC" => $_POST['color_id'], "NC" => $color[0]->nombre, "idV" => $_POST['voltaje_id'], "NV" => $voltaje[0]->nombre);
                         $responsive = $this->carrito->addItem($_POST['id'], $_POST['quantity'], $filtros);
-                        $products = $this->productoModel->getAll();
-                require 'views/products.php';
                     } else {
                         $color = $this->colorModel->getById($_POST['color_id']);
                         $filtros = array("idC" => $_POST['color_id'], "NC" => $color[0]->nombre, "idV" => null, "NV" => null);
                         $responsive = $this->carrito->addItem($_POST['id'], $_POST['quantity'], $filtros);
-                        $products = $this->productoModel->getAll();
-                require 'views/products.php';
                     }
                 } elseif (isset($_POST['voltaje_id'])) {
                     if(isset($_POST['color_id'])) {
@@ -49,19 +44,13 @@ require 'models/departamento.php';
                         $voltaje = $this->voltajeModel->getById($_POST['voltaje_id']);
                         $filtros = array("idC" => $_POST['color_id'], "NC" => $color[0]->nombre, "idV" => $_POST['voltaje_id'], "NV" => $voltaje[0]->nombre);
                         $responsive = $this->carrito->addItem($_POST['id'], $_POST['quantity'], $filtros);
-                        $products = $this->productoModel->getAll();
-                require 'views/products.php';
                     } else {
                         $voltaje = $this->voltajeModel->getById($_POST['voltaje_id']);
                         $filtros = array("idC" => null, "NC" => null, "idV" => $_POST['voltaje_id'], "NV" => $voltaje[0]->nombre);
                         $responsive = $this->carrito->addItem($_POST['id'], $_POST['quantity'], $filtros);
-                        $products = $this->productoModel->getAll();
-                require 'views/products.php';
                     }
                 } else {
                     $responsive = $this->carrito->addItem($_POST['id'], $_POST['quantity'], null);
-                    $products = $this->productoModel->getAll();
-                require 'views/products.php';
                 }
             } else {
                 print("No llego");
@@ -120,6 +109,16 @@ require 'models/departamento.php';
             }
             $resArray = array('info' => ['count' => $totalItems, 'total' => number_format($total)] , 'items' => $fullItems);
             echo json_encode($resArray);
+        }
+
+        public function cantidadCart()
+        {
+            $itemsCarrito = json_decode($this->carrito->load(), 1);
+            $totalItems = 0;
+            foreach ($itemsCarrito as $itemCarrito) {
+                $totalItems += $itemCarrito['cantidad'];
+            }
+            echo $totalItems;
         }
 
         public function viewCart()

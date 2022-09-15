@@ -9,13 +9,16 @@
                                     <h4 class="widget-title">INFORMACIÓN DE CONTACTO</h4>
                                     <ul class="contact-info">
                                         <li>
-                                            <span class="contact-info-label">Teléfono:</span><a href="tel:">(601) 390 6666 EXT 1010</a>
+                                            <span class="contact-info-label">Teléfono:</span><a href="tel:6013906666,1023">(601) 390 6666 EXT 1023</a>
                                         </li>
                                         <li>
-                                            <span class="contact-info-label">Correo:</span> <a href="mailto:fenusa@fenusa.com.co">fenusa@fenusa.com.co</a>
+                                            <span class="contact-info-label">Correo:</span> <a href="mailto:asistente.comercial5@fenusa.com.co">asistente.comercial5@fenusa.com.co</a>
                                         </li>
                                         <li>
                                             <span class="contact-info-label">Ubicación</span><a href="https://goo.gl/maps/t8qbBsxY1eV5GrTQA" target="_blank">Cra 25 N. 13 - 40</a>
+                                        </li>
+                                        <li>
+                                            <span class="contact-info-label">Celular:</span><a href="tel:+573134956505">313 495 65 05</a>
                                         </li>
 
                                     </ul>
@@ -155,7 +158,7 @@
         </div>
     </div>
     <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
-    <a href="https://api.whatsapp.com/send?phone=573203487184" class="floatWhats"><i class="fab fa-whatsapp fa-fw" aria-hidden="true"></i></a>
+    <a href="https://api.whatsapp.com/send?phone=573134956505" class="floatWhats"><i class="fab fa-whatsapp fa-fw" aria-hidden="true"></i></a>
     <!-- Plugins JS File -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>

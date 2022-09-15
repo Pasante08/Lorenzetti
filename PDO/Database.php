@@ -137,4 +137,16 @@ class Database extends PDO
 			die($e->getMessage());
 		}
 	}
+
+	//Metodo para cambiar el estado del producto
+	public function estadoProductos($idProductoSis, $estado, $fetchMode = PDO::FETCH_OBJ)
+	{
+		try {
+			$query = $this->prepare("CALL estado_producto('{$idProductoSis}', '{$estado}')");
+			$query->execute();
+			return $query->fetchAll($fetchMode);
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
 }

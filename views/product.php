@@ -30,7 +30,7 @@
 									<div class="product-single-carousel owl-carousel owl-theme caxsa">
 										<?php if (!empty($productosColor)) : ?>
 											<?php foreach ($productosColor as $productoC) : ?>
-												<div class="product-item">
+												<div class="product-item" id="product" value="<?php echo $productoC->color_id ?>">
 													<img class="product-single-image" src="<?php echo $productoC->ubicacion ?>" data-zoom-image="<?php echo $productoC->imgxcien ?>" />
 												</div>
 											<?php endforeach ?>
@@ -63,9 +63,9 @@
 						</div><!-- End .col-lg-6 -->
 
 						<div class="col-lg-6">
-							<form action="?controller=carrito&method=add" method="POST">
+							<form id="frmAddCart">
 								<div class="product-single-details">
-									<input type="hidden" value="<?php echo $product[0]->idProducto ?>" name="id">
+									<input type="hidden" value="<?php echo $product[0]->idProducto ?>" name="id" id="id">
 									<h1 class="product-title"><?php echo $product[0]->nombre; ?></h1>
 
 									<div class="ratings-container">
@@ -84,20 +84,21 @@
 									</div><!-- End .product-desc -->
 
 									<div class="product-filters-container">
-										<div class="product-single-filter">
-											<?php if (isset($colores)) : ?>
-												<label>Colores:</label>
+										<!--<div class="product-single-filter">-->
+											<?php //if (isset($colores)) : ?>
+												<!--<label>Colores:</label>
 												<ul class="config-swatch-list caxsalls">
-													<?php foreach ($colores as $color) : ?>
-														<input type="hidden" value="<?php echo $color->nombre ?>" name="C_nombre">
-														<!--<input type="text" value="<?php //echo $color->idColor ?>" name="color_id" id="color_id">-->
-														<a href="#" data-id="<?php echo $color->idColor ?>"><img src="<?php echo $color->imgColor ?>" alt="" style="margin-right: 3px;"></a>
-													<?php endforeach ?>
+													<?php //foreach ($colores as $color) : ?>
+														<input type="hidden" value="<?php //echo $color->nombre ?>" name="C_nombre">
+														<input type="text" value="<?php //echo $color->idColor 
+																						?>" name="color_id" id="color_id">-->
+														<!--<a href="#" data-id="<?php //echo $color->idColor ?>"><img src="<?php //echo $color->imgColor ?>" alt="" style="margin-right: 3px;"></a>
+													<?php //endforeach ?>
 													<input type="hidden" class="form-control" name="color_id" id="color_id" value="">
-												</ul>
-											<?php else : ?>
-											<?php endif ?>
-										</div><!-- End .product-single-filter -->
+												</ul>-->
+											<?php //else : ?>
+											<?php //endif ?>
+										<!--</div>--><!-- End .product-single-filter -->
 										<div class="product-single-filter mb-2">
 											<?php if (isset($voltajes)) : ?>
 												<input type="hidden" id="voltaje_id" name="voltaje_id" value="">
@@ -105,14 +106,22 @@
 												<ul class="config-size-list caxsalls1">
 													<?php foreach ($voltajes as $voltaje) : ?>
 														<input type="hidden" value="<?php echo $voltaje->nombre ?>" name="V_nombre">
-														<li class="" value="<?php echo $voltaje->idVoltaje ?>"><a id="voltaje_id" name="voltaje_id" href="#"><?php echo $voltaje->nombre ?></a></li>
+														<li class="" value="<?php echo $voltaje->idVoltaje ?>"><a href="#"><?php echo $voltaje->nombre ?></a></li>
 													<?php endforeach ?>
 												</ul>
 											<?php else : ?>
 											<?php endif ?>
 										</div><!-- End .product-single-filter -->
-									</div><!-- End .product-filters-container -->
+										<div id="required_Voltage" class="required text-left" hidden>Seleccione voltaje</div>
+										<div id="Colors" class="product-single-filter" hidden>
+												<label>Colores:</label>
+												<ul class="config-swatch-list" id="carousel-custom-dots">
 
+												</ul>
+												<input type="hidden" class="form-control" name="color_id" id="color_id" value="">
+										</div><!-- End .product-single-filter -->
+										<div id="required_Color" class="required text-left" hidden>Seleccione color</div>
+									</div><!-- End .product-filters-container -->
 									<hr class="divider">
 
 									<div class="product-action">
@@ -120,8 +129,7 @@
 											<input class="horizontal-quantity form-control" type="text" name="quantity" id="quantity">
 										</div><!-- End .product-single-qty -->
 
-										<!--<a href="?controller=carrito&method=add" class="btn btn-danger add-cart icon-shopping-cart disabled" id="btn-submit" title="Añadir al carrito">Añadir a la bolsa</a>-->
-										<button class="btn btn-danger add-cart icon-shopping-cart" id="btn-submit" title="Añadir a la bolsa" disabled>Añadir a la bolsa</button>
+										<input type="submit" class="btn btn-danger add-cart icon-shopping-cart" id="btn-submit" value="Añadir al carrito">
 									</div><!-- End .product-action -->
 
 									<hr class="divider mb-1">
@@ -225,7 +233,7 @@
 										</div>
 									</div>
 									<h3 class="product-title">
-										<a href="product.html"><?php echo $producto->nombre ?></a>
+										<a href="?controller=producto&method=viewProduct&id=<?php echo $producto->idProducto ?>"><?php echo $producto->nombre ?></a>
 									</h3>
 									<div class="ratings-container">
 									</div><!-- End .ratings-container -->

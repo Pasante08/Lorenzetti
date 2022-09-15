@@ -23,6 +23,7 @@
                     <thead>
                         <tr>
                             <th>producto</th>
+                            <th>producto_id</th>
                             <th>color_id</th>
                             <th>ubicacion</th>
                             <th>imgxcien</th>
@@ -34,7 +35,8 @@
                         <?php foreach ($producto_color as $productoColor) : ?>
                             <tr>
                                 <td><?php echo $productoColor->producto ?></td>
-                                <td><?php echo $productoColor->color ?></td>
+                                <td><?php echo $productoColor->producto_id ?></td>
+                                <td><?php echo $productoColor->color_id ?></td>
                                 <td><?php echo $productoColor->ubicacion ?></td>
                                 <td><?php echo $productoColor->imgxcien ?></td>
                                 <td><?php echo $productoColor->estado ? '<span style="color:green">Activo</span>' : '<span style="color:red">Inactivo</span>'; ?></td>

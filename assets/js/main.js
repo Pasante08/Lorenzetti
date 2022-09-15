@@ -1,182 +1,139 @@
 $(document).ready(function() {
+    const cartCount = document.querySelector('.cart-count');
+    $.ajax({
+        type: "POST",
+        url: "?controller=carrito&method=cantidadCart",
+        success: function(e) {
+            cartCount.innerHTML = e;
+        }
+    });
     var iva = 1.19;
-    var color_id = !!document.getElementById("color_id");
-    //alert(color_id);
-    var voltaje_id = !!document.getElementById("voltaje_id");
-    //alert(voltaje_id);
-    if (color_id && voltaje_id) {
-        //alert("llego");
-        //$("#btn-submit").prop("disabled", false);
-        $("#voltaje_id").change(function() {
-            if ($("#voltaje_id").val() == true) {
-                alert("volvio a llegar al if");
-                $("#btn-submit").prop("disabled", true);
-            } else {
-                alert("volvio a llegar al else");
-                $("#btn-submit").prop("disabled", false);
-                $('#color_id').val($(".caxsalls a").attr('data-id'))
-                console.log("#caxsa" + $(this).attr('data-id'))
-            }
-        })
-
-    } else if (voltaje_id) {
-        //alert("llego 2")
-        //$("#btn-submit").prop("disabled", false);
-        $("#voltaje_id").change(function() {
-            if ($(this).val() == "") {
-                $("#btn-submit").prop("disabled", true);
-            } else {
-                //$("#btn-submit").prop("disabled", true);
-                $("#btn-submit").prop("disabled", false);
-            }
-        })
-    } else if (color_id) {
-        $("#color_id").change(function() {
-            if ($(this).val() == "") {
-                $("#btn.submit").prop("disabled", true);
-            } else {
-                $("#btn-submit").prop("disabled", false);
-            }
-        })
-    } else {
-        $("#btn-submit").prop("disabled", false);
-    }
 
     //Bloqueamos el select de los municipios
     $("#slt-muni").prop('disabled', true);
+    // $("#adress").prop('disabled', true);
+    // $("#cliente").prop('disabled', true);
+    // $("#email").prop('disabled', true);
+    // $("#phone").prop('disabled', true);
+
 
     //Hcaer cambiar el SELECT de valor
     $("#slt-depa").change(function() {
-            var munis = $("#slt-muni");
+        var munis = $("#slt-muni");
 
-            //Guardar el select de departamentos
-            var depas = $(this);
+        //Guardar el select de departamentos
+        var depas = $(this);
 
-            if ($(this).val() != '') {
-                $.ajax({
-                    data: { id: depas.val() },
-                    url: '?controller=departamento&method=muniPorDepa',
-                    type: 'POST',
-                    dataType: 'json',
-                    beforeSend: function() {
-                        depas.prop('disabled', true);
-                    },
-                    success: function(r) {
-                        depas.prop('disabled', false);
-                        //limpiar el select
-                        munis.find('option').remove();
-                        console.log(r);
+        if ($(this).val() != '') {
+            $.ajax({
+                data: { id: depas.val() },
+                url: '?controller=departamento&method=muniPorDepa',
+                type: 'POST',
+                dataType: 'json',
+                beforeSend: function() {
+                    depas.prop('disabled', true);
+                },
+                success: function(r) {
+                    depas.prop('disabled', false);
+                    //limpiar el select
+                    munis.find('option').remove();
+                    munis.append('<option value="">Seleccione...</option>');
+                    $(r).each(function(i, v) { //indice, valor
+                        munis.append('<option value="' + v.idMunicipio + '">' + v.nombre + '</option>');
+                    })
+
+                    munis.prop('disabled', false);
+
+                    munis.change(function() {
+                        var mun = $(this).val();
+                        var tax = 0;
                         $(r).each(function(i, v) { //indice, valor
-                            munis.append('<option value="' + v.idMunicipio + '">' + v.nombre + '</option>');
-                        })
 
-                        munis.prop('disabled', false);
-
-                        munis.change(function() {
-                            var mun = $(this).val();
-                            var tax = 0;
-                            $(r).each(function(i, v) { //indice, valor
-
-                                if (Number(mun) == v.idMunicipio) {
-                                    var valors = $('.valores > td:eq(1)').html();
-                                    var valorsFormat = valors.replace(/[$.]/g, '');
-                                    var flete = v.flete;
-                                    console.log("este es el flete " + flete);
-                                    //var vpsi = (parseFloat(valorsFormat) / iva);
-                                    //console.log("este es el valor vpsi " + vpsi);
-                                    //console.log("Este es el valor vpsi rdondeado " + Math.round(vpsi))
-                                    var vpsi = $('#vpsi').val();
-                                    console.log("Este es el valor del precio son iva " + vpsi);
-                                    var dtoen = vpsi * 0.2;
-                                    console.log("Este es el valor del descuento " + dtoen);
-                                    if (dtoen <= flete) {
-                                        tax = parseFloat(flete) - parseFloat(dtoen);
-                                        $('#pruebainput').val(tax);
-                                        $('#tax').val(tax);
-                                        $('#pruebainputSD').val(Math.round(tax));
-                                        taxFormat = new Intl.NumberFormat('es-CO', {
-                                            style: 'currency',
-                                            currency: 'COP',
-                                            minimumFractionDigits: 0
-                                        }).format(Math.round(tax))
-                                        $('#precioFinal').val(tax);
-                                        $('.flete > td:eq(1)').html(taxFormat);
-                                    } else {
-                                        $('#tax').val(tax);
-                                        taxFormat = new Intl.NumberFormat('es-CO', {
-                                            style: 'currency',
-                                            currency: 'COP',
-                                            minimumFractionDigits: 0
-                                        }).format(tax)
-                                        $('.flete > td:eq(1)').html(taxFormat);
-
-                                    }
-                                    var total = parseFloat(tax) + parseFloat(valorsFormat);
-                                    console.log(Math.round(total) + '00');
-                                    $('#total').val(total);
-                                    $('#totalFinal').val(Math.round(total) + '00');
-                                    /*$('#amount-in-cents').val(total);*/
-                                    $('#inputPrecio').val(total + '00');
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "?controller=carrito&method=generateCod",
-                                        success: function(data) {
-                                            $('#reference').val(data);
-                                        }
-                                    })
-                                    totalFormat = new Intl.NumberFormat('es-CO', {
+                            if (Number(mun) == v.idMunicipio) {
+                                var valors = $('.valores > td:eq(1)').html();
+                                var valorsFormat = valors.replace(/[$.]/g, '');
+                                var flete = v.flete;
+                                var vpsi = $('#vpsi').val();
+                                var dtoen = vpsi * 0.2;
+                                if (dtoen <= flete) {
+                                    tax = parseFloat(flete) - parseFloat(dtoen);
+                                    $('#pruebainput').val(tax);
+                                    $('#tax').val(tax);
+                                    $('#pruebainputSD').val(Math.round(tax));
+                                    taxFormat = new Intl.NumberFormat('es-CO', {
                                         style: 'currency',
                                         currency: 'COP',
                                         minimumFractionDigits: 0
-                                    }).format(Math.round(total))
-                                    $('.total > td:eq(1)').html(totalFormat);
+                                    }).format(Math.round(tax))
+                                    $('#precioFinal').val(tax);
+                                    $('.flete > td:eq(1)').html(taxFormat);
+                                } else {
+                                    $('#tax').val(tax);
+                                    taxFormat = new Intl.NumberFormat('es-CO', {
+                                        style: 'currency',
+                                        currency: 'COP',
+                                        minimumFractionDigits: 0
+                                    }).format(tax)
+                                    $('.flete > td:eq(1)').html(taxFormat);
 
-                                    $('#adress').change(function() {
-                                        if ($(this).val() != "") {
-                                            //$('#checkout-shipping').prop('disabled', false);
-                                            //$('#checkout-shipping').removeClass('disabled');
-                                            $('#cliente').change(function() {
-                                                if ($(this).val() != "") {
-                                                    $('#email').change(function() {
-                                                        if ($(this).val() != "") {
-                                                            $('#phone').change(function() {
-                                                                if ($(this).val() != "") {
-                                                                    $('#checkout-shipping').prop('disabled', false);
-                                                                    $('#checkout-shipping').removeClass('disabled');
-                                                                } else {
-                                                                    alert("Falta telefono");
-                                                                    $('#checkout-shipping').addClass('disabled');
-                                                                }
-                                                            })
-                                                        } else {
-                                                            $('#checkout-shipping').addClass('disabled');
-                                                        }
-                                                    })
-                                                } else {
-                                                    $('#checkout-shipping').addClass('disabled');
-                                                }
-                                            })
-                                        } else {
-                                            $('#checkout-shipping').addClass('disabled');
-                                        }
-                                    })
                                 }
-                            })
+                                var total = parseFloat(tax) + parseFloat(valorsFormat);
+                                console.log(Math.round(total) + '00');
+                                $('#total').val(total);
+                                $('#totalFinal').val(Math.round(total) + '00');
+                                $('#inputPrecio').val(total + '00');
+                                $.ajax({
+                                    type: "POST",
+                                    url: "?controller=carrito&method=generateCod",
+                                    success: function(data) {
+                                        $('#reference').val(data);
+                                    }
+                                })
+                                totalFormat = new Intl.NumberFormat('es-CO', {
+                                    style: 'currency',
+                                    currency: 'COP',
+                                    minimumFractionDigits: 0
+                                }).format(Math.round(total))
+                                $('.total > td:eq(1)').html(totalFormat);
+                            }
                         })
-                    },
-                    error: function() {
+                        $('#adress').prop('disabled', false);
+                    })
+                },
+                error: function() {
 
-                        alert('Ocurrio un error en el servidor ..');
-                        depas.prop('disabled', false);
-                    }
-                })
-            } else {
-                $('#checkout-shipping').addClass('disabled');
-                munis.find('option').remove();
-                munis.prop('disabled', true);
-            }
-        })
-        //carga de filtro productos por categoria
+                    alert('Ocurrio un error en el servidor ..');
+                    depas.prop('disabled', false);
+                }
+            })
+        } else {
+            munis.find('option').remove();
+            munis.prop('disabled', true);
+        }
+    })
+
+    //Proceso al cargar dirección
+    $('#adress').change(function() {
+        if ($(this).val() != '') {
+            $('#cliente').prop('disabled', false);
+        }
+    })
+
+    //Proceso al cargar cliente
+    $('#cliente').change(function() {
+        if ($(this).val() != '') {
+            $('#email').prop('disabled', false);
+        }
+    })
+
+    //
+    $('#email').change(function() {
+        if ($(this).val() != '') {
+            $('#phone').prop('disabled', false);
+        }
+    })
+
+    //carga de filtro productos por categoria
     $('#orderBy').change(function() {
         var orderBy = $(this).val();
         if (orderBy != "") {
@@ -251,7 +208,6 @@ $(document).ready(function() {
             url: "?controller=carrito&method=addItemP",
             data: param,
             success: function(r) {
-                console.log(r);
                 window.location.href = "?controller=carrito&method=viewCart";
             }
         })
@@ -263,7 +219,6 @@ $(document).ready(function() {
         $(this).parents("tr").find(".productCart").each(function() {
             idCart += $(this).html();
         })
-        console.log(idCart);
         $.ajax({
             type: "POST",
             url: "?controller=carrito&method=removeItem",
@@ -273,53 +228,92 @@ $(document).ready(function() {
             }
         })
     })
-
-    $("#btn-carrito").click(function() {
-        const cartCount = document.querySelector('.cart-count');
-        const items = document.querySelector('.items');
-        const price = document.querySelector('.cart-total-price');
-        $.ajax({
-            type: "POST",
-            url: "?controller=carrito&method=mostrar",
-            success: function(data) {
-                var info = JSON.parse(data);
-                console.log(info);
-                let html = ``;
-                info.items.forEach(element => {
-                    html += `
-                    <div class="product">
-                        <div class="product-details">
-                            <input type="hidden" value='${element.idProducto}'/>
-                            <h4 class="product-title">
-                                <a href="#">${element.nombre}</a>
-                            </h4>
-                            <span class="cart-product-info">
-                                <span class="cart-product-qty">${element.cantidad} x ${Number.parseFloat(element.precio)}</span>
-                            </span>
-                        </div>
-                        <figure class="product-image-container">
-                            <a href="product.html" class="product-image">
-                                <img src="${element.imagen}" alt="product" width="80" height="80">
-                            </a>
-                            <a href="#" onclick ="removeProduct('${element.idProducto}')"class="btn-remove icon-cancel remove" title="Remove Product"></a>
-                        </figure>
-                    </div>`;
-                })
-                $('#tabla-product').html(html)
-                document.cookie = `items=${info.info.count}`;
-                cartCount.innerHTML = `${info.info.count}`;
-                items.innerHTML = `${info.info.count} item`;
-                price.innerHTML = `${info.info.total}`;
-            }
-        })
-    })
 })
 
+$(".caxsalls1 li").click(
+    function(e) {
+        $(this).addClass('Active');
+        $('#required_Voltage').prop('hidden', true);
+        $('#color_id').val("");
+        e.preventDefault();
+        var idPrueba = $('#id').val();
+        var idVol = $(this).attr("value");
+        $('#voltaje_id').val($(this).attr("value"));
+        var cadena = { "id": idPrueba, "idV": idVol }
+        $.ajax({
+            url: "?controller=productosis&method=colors_voltage",
+            type: "POST",
+            data: cadena,
+            success: function(e) {
+                var info = JSON.parse(e);
+                let html = ``;
+                if (info.items.length != 0) {
+                    $('#Colors').prop('hidden', false);
+                    info.items.forEach(element => {
+                        html += `<li class="owl-dot">
+                                        <a href="#" value="${element.idColor}" style="background-color: ${element.cod_color};">${element.nombre}</a>
+                                    </li>`;
+                    })
+                    $('.config-swatch-list').html(html);
+                    $('#carousel-custom-dots .owl-dot a').click(function() {
+                        $('#required_Color').prop('hidden', true);
+                        $(this).addClass('active');
+                        var idclr = $(this).attr("value");
+                        $('#color_id').val(idclr);
+                        var i = 0;
+                        info.productos.forEach(element => {
+                            if (idclr == element.color_id) {
+                                $('.product-single-carousel').trigger('to.owl.carousel', i);
+                            }
+                            i++;
+                        })
+                    });
+                } else {
+                    $("#color_id").val(0);
+                }
+            }
+        })
+    }
+);
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("frm-fac").addEventListener('submit', validarFormulario);
+});
+
+function validarFormulario(e) {
+    e.preventDefault();
+    if ($('#slt-depa').val() == "") {
+        alert("esta vacio el departamento")
+        return false;
+    } else if ($('#slt-muni').val() == "") {
+        alert("esta vacio el municipio");
+        return false;
+    } else if ($('#adress').val() == "") {
+        alert("esta vacia la dirección")
+        return false;
+    } else if ($('#cliente').val() == "") {
+        alert("esta vacio el nombre del cliente")
+        return false;
+    } else if ($('#email').val() == "") {
+        alert("esta vacio el correo")
+        return false;
+    } else if ($('#phone').val() == "") {
+        alert("esta vacio el teléfono")
+        return false;
+    } else if ($('#vpsi').val() == "") {
+        alert("esta vacio")
+        return false;
+    } else if ($('#total').val() == "") {
+        alert("esta vacio")
+        return false;
+    } else {
+        this.submit();
+    }
+}
 
 $('#frmcontacto').submit(function(e) {
     $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
     e.preventDefault();
-    console.log($(this).serialize());
     $.post("?controller=cliente&method=subscribe", $(this).serialize(), function() {
         Swal.fire({
             title: "Gracias!",
@@ -331,14 +325,50 @@ $('#frmcontacto').submit(function(e) {
     });
 })
 
+$('#frmAddCart').submit(function(e) {
+    var voltaje_id = !!document.getElementById("voltaje_id");
+    if (voltaje_id) {
+        if ($("#voltaje_id").val() != "") {
+            if (color_id) {
+                if ($("#color_id").val() != "") {
+                    $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+                    e.preventDefault();
+                    $.post("?controller=carrito&method=add", $(this).serialize(), function() {
+                        window.location.href = "?controller=carrito&method=viewCart";
+                    })
+                } else {
+                    if ($("#color_id").val() != 0) {
+                        console.log('tiene cero');
+                    } else {
+                        console.log('No tiene cero');
+                    }
+                    $('#required_Color').prop("hidden", false);
+                    return false;
+                }
+            }
+        } else {
+            $('#required_Voltage').prop("hidden", false);
+            return false;
+        }
+    } else {
+        $("#color_id").val(0);
+        $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+        e.preventDefault();
+        console.log($(this).serialize());
+        $.post("?controller=carrito&method=add", $(this).serialize(), function() {
+            window.location.href = "?controller=carrito&method=viewCart";
+        })
+    }
+});
 
-$(".caxsalls a").click(
+$(".config-swatch-list li a").click(
     function(e) {
+        alert("llego al color");
         e.preventDefault();
         $('#color_id').val($(this).attr('data-id'))
         $("#caxsa" + $(this).attr('data-id')).addClass("active")
         $(this).removeClass("active")
-        $('.product-single-carousel').trigger('to.owl.carousel', [$(this).index(), 300])
+            //$('.product-single-carousel').trigger('to.owl.carousel', [$(this).index(), 300])
         console.log("#caxsa" + $(this).attr('data-id'))
         if ($('#voltaje_id').val() == "")
             $("#btn-submit").prop("disabled", true);
@@ -794,7 +824,7 @@ $(".caxsalls a").click(
                 margin: 0,
                 responsiveClass: true,
                 nav: false,
-                navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
+                //navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
                 dots: true,
                 autoplay: true,
                 autoplayTimeout: 15000,
@@ -832,7 +862,7 @@ $(".caxsalls a").click(
                     nav: true,
                     autoplayTimeout: 12000,
                     animateOut: 'fadeOut',
-                    navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
+                    //navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
                     loop: true
                 },
                 '.testimonials-carousel': {
@@ -968,7 +998,7 @@ $(".caxsalls a").click(
                 '.widget-featured-products': {
                     lazyLoad: true,
                     nav: true,
-                    navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
+                    //navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
                     dots: false,
                     autoHeight: true
                 },
@@ -1073,9 +1103,14 @@ $(".caxsalls a").click(
             });
 
             // Product Page Dot Thumbnails Carousel
-            $('#carousel-custom-dots .owl-dot').click(function() {
+            $('#carousel-custom-dots .owl-dot').click(function(e) {
                 $('.product-single-carousel').trigger('to.owl.carousel', [$(this).index(), 300]);
             });
+
+            // Product Page Dot Thumbnails Carousel
+            $('.config-swatch-list .owl-dot').click(function() {
+                $('.product-single-carousel').trigger('to.owl.carousel', [$(this).index(), 300]);
+            })
         },
         filterSlider: function() {
             // Slider For category pages / filter price

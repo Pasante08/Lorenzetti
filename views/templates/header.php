@@ -113,7 +113,7 @@ $categorias = $categoriaModel->getAll();
                             </form>
                         </div>
                         <div class="dropdown cart-dropdown">
-                            <a href="#" id="btn-carrito" class="dropdown-toggle dropdown-arrow" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="">
+                            <a href="?controller=carrito&method=viewCart" id="btn-carrito" class="dropdown-toggle dropdown-arrow" role="button">
                                 <i class="fas fa-shopping-cart"></i>
                                 <span class="cart-count badge-circle"></span>
                             </a>

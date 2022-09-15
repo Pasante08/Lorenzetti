@@ -53,7 +53,7 @@
         public function getAll()
         {
             try {
-                $strSql = "SELECT * FROM producto WHERE estado = 1";
+                $strSql = "SELECT * FROM producto WHERE estado = 1 ORDER BY categoria_id ASC";
                 return $this->pdo->select($strSql);
             } catch (PDOException $e) {
                 die($e->getMessage());

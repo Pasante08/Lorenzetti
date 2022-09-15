@@ -207,12 +207,16 @@ class facturaController
             }
             $client = $_POST['cliente'];
             $amount_in_cents = $_POST['total'];
-            
             require 'views/pedido.php';
         } else {
             print("No llego");
             die();
         }
+    }
+
+    public function viewPedido()
+    {
+        require 'views/pedido.php';
     }
 
     public function mostrarItemsCart()

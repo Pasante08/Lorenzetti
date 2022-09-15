@@ -56,7 +56,7 @@
 							</a>
 							<div class="btn-icon-group">
 							</div>
-							<a href="?controller=producto&method=viewProduct&id=<?php echo $product->idProducto ?>" class="btn-quickview" title="Añadir a la bolsa">Añadir a la bolsa</a> 
+							<a href="?controller=producto&method=viewProduct&id=<?php echo $product->idProducto ?>" class="btn-quickview" title="Añadir al carrito">Añadir al carrito</a> 
 						</figure>
 						<div class="product-details">
 							<div class="category-wrap">
@@ -65,7 +65,7 @@
 								</div>
 							</div>
 							<h6 class="product-title">
-								<a href="product.html"><?php echo $product->nombre ?></a>
+								<a href="?controller=producto&method=viewProduct&id=<?php echo $product->idProducto ?>"><?php echo $product->nombre ?></a>
 							</h6>
 							<div class="ratings-container">
 								

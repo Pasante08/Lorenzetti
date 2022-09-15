@@ -2943,7 +2943,7 @@ label {
 
 .required {
     color: #e02b27;
-    font-size: 1.2rem
+    font-size: 1.2rem;
 }
 
 .required+.form-footer {
@@ -4204,6 +4204,15 @@ span.page-link,
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2)
 }
 
+.config-swatch-list li .double {
+    position: relative;
+    display: block;
+    width: 2.6rem;
+    height: 1.3rem;
+    margin: 3px 0px 3px 0;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2)
+}
+
 .config-swatch-list li .color-panel {
     display: inline-block;
     width: 1.7rem;
@@ -4221,6 +4230,8 @@ span.page-link,
     color: #000
 }
 
+.config-swatch-list li:hover a:before,
+.config-swatch-list li:focus a:before,
 .config-swatch-list li.active a:before {
     display: inline-block;
     position: absolute;
@@ -4231,8 +4242,23 @@ span.page-link,
     font-family: 'porto';
     font-size: 1.1rem;
     line-height: 1;
-    content: '\e84e'
+    content: '\e84e';
+    border-color: #c21e1e
 }
+
+
+/*.config-swatch-list li.active a:before {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #fff;
+    font-family: 'porto';
+    font-size: 1.1rem;
+    line-height: 1;
+    content: '\e84e'
+}*/
 
 .config-swatch-list a:hover .color-panel,
 .config-swatch-list a:focus .color-panel,
@@ -9208,6 +9234,19 @@ main .sticky-header .product-ratings:before {
     outline: none;
     background-color: #f4f4f4;
     color: #21293c
+}
+
+.product-single-filter .config-size-list li.active a:before {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #fff;
+    font-family: 'porto';
+    font-size: 1.1rem;
+    line-height: 1;
+    content: '\e84e'
 }
 
 .product-single-filter.product-single-qty {

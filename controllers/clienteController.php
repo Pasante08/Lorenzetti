@@ -22,17 +22,17 @@
         {
             if (isset($_POST)) {
                 try {
-                    $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                    $this->mail->SMTPDebug = 0;
                     $this->mail->isSMTP();
-                    $this->mail->host       = 'smtp.gmail.com';
+                    $this->mail->Host       = 'mail.fenusa.com.co';
                     $this->mail->SMTPAuth   = true;
-                    $this->mail->Username   = 'jmarceloangarita@gmail.com';
-                    $this->mail->Password   = 'hkfhcyvqlfgiojvl';
+                    $this->mail->Username   = 'fenusa@fenusa.com.co';
+                    $this->mail->Password   = 'Fenusa2022*';
                     $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                     $this->mail->Port       = 465;
 
                     $this->mail->setFrom('fenusa@fenusa.com.co', 'fenusa.com.co');
-                    $this->mail->addAddress('supervisor.operaciones@fenusa.com.co', 'Supervisor Operaciones');
+                    //$this->mail->addAddress('supervisor.operaciones@fenusa.com.co', 'Supervisor Operaciones');
                     $this->mail->addAddress('asistentesr.sistemas@fenusa.com.co', 'Asistente Senior Sistemas');
 
                     $this->mail->isHTML(true);

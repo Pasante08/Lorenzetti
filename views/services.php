@@ -46,29 +46,31 @@
 
 							<p>Carrera 25 No. 13 &ndash; 40</p>
 
-							<p>Cel. 3203488142 &ndash; 3184665143</p>
+							<p>Cel. 318 282 4094</p>
+
+							<p>tel: 390 66 66, Ext: 1302</p>
+
+							<p>servicio.tecnico2@fenusa.com.co</p>
 
 							<p>&nbsp;</p>
 
 							<p><span style="color:#000000">DUCHAS EL&Eacute;CTRICAS EL NORTE</span></p>
 
+							<p>Victor Rodriguez Sánchez</p>
+
 							<p>Carrera 51 No. 128C &ndash; 30</p>
 
-							<p>Cel. 3005555727</p>
+							<p>Cel. 300 555 5727</p>
 
 							<p>&nbsp;</p>
 
 							<p><span style="color:#000000">CENTRAL DE DUCHAS</span></p>
 
+							<p>Victor Rodriguez Sánchez</p>
+
 							<p>Av. Calle 62 No. 60 &ndash; 50</p>
 
-							<p>&nbsp;</p>
-
-							<p><span style="color:#000000">SERVIYA SH</span></p>
-
-							<p>Carrera 30 No. 40A &ndash; 15</p>
-
-							<p>Cel. 3124945211 &ndash; 3203274419</p>
+							<p>Cel. 300 555 5727</p>
 
 							<p>&nbsp;</p>
 
@@ -76,27 +78,11 @@
 
 							<p><span style="color:#000000">EL&Eacute;CTRICOS ATENAS</span></p>
 
+							<p>Jaime Alberto Hernández</p>
+
 							<p>Calle 50 No. 52 &ndash; 53</p>
 
-							<p>Cel. 3137873169 &ndash; 2318902</p>
-
-							<p>&nbsp;</p>
-
-							<p><span style="color:#000000">FERRETER&Iacute;A Y EL&Eacute;CTRICOS SERVI-FERRETERO</span></p>
-
-							<p>Calle 54 No. 49 &ndash; 120 C.C. el Cid Local 123</p>
-
-							<p>Cel. 3113760840 &ndash; 5129103</p>
-
-							<p>&nbsp;</p>
-
-							<p><span style="color:#cc0033">CALI</span></p>
-
-							<p><span style="color:#000000">MISCELANEA LAS CHAPAS</span></p>
-
-							<p>Av. 3 Norte No. 47 &ndash; 138</p>
-
-							<p>Cel. 3176492987 &ndash; 6492987</p>
+							<p>Cel. 313 787 3169</p>
 
 							<p>&nbsp;</p>
 
@@ -104,9 +90,11 @@
 
 							<p><span style="color:#000000">DK SYSTEM TECHNOLOGY</span></p>
 
-							<p>Carrera 26 No. 44A &ndash; 11</p>
+							<p>Fabián Pedraza Lenis</p>
 
-							<p>3174901252 &ndash; 2844138</p>
+							<p>Carrera 31 No. 51 &ndash; 03</p>
+
+							<p>317 490 1252 &ndash; 318 711 7662</p>
 
 							<p>&nbsp;</p>
 
@@ -114,9 +102,11 @@
 
 							<p><span style="color:#000000">SERVICENTRO LA DUCHA</span></p>
 
+							<p>Luis Fernando Cerón López</p>
+
 							<p>Carrera 7 No. 8 &ndash; 07</p>
 
-							<p>Cel. 3116325286</p>
+							<p>Cel. 311 632 5286</p>
 
 							<p>&nbsp;</p>
 
@@ -124,9 +114,11 @@
 
 							<p><span style="color:#000000">LUMIEL&Eacute;CTRICOS PITALITO</span></p>
 
+							<p>Anderson Rivera</p>
+
 							<p>Carrera 3 No. 1 &ndash; 68</p>
 
-							<p>Cel. 3138708681 &ndash; 3208008177</p>
+							<p>Cel. 313 870 8681 &ndash; 320 800 8177</p>
 
 							<p>&nbsp;</p>
 
@@ -134,9 +126,11 @@
 
 							<p><span style="color:#000000">SERVILISS REPARACIONES</span></p>
 
+							<p>Lisbel Mendoza Herrera</p>
+
 							<p>Calle 10 No. 10 &ndash; 39</p>
 
-							<p>Cel. 3123062620 &ndash; 7725774</p>
+							<p>Cel. 312 306 2620</p>
 
 							<p>&nbsp;</p>
 
@@ -146,7 +140,7 @@
 
 							<p>Carrera 18 No. 19 &ndash; 23</p>
 
-							<p>Cel. 3103230856 &ndash; 3115000230</p>
+							<p>Cel. 310 323 0856 &ndash; 311 500 0230</p>
 
 							<p>&nbsp;</p>
 
@@ -154,9 +148,11 @@
 
 							<p><span style="color:#000000">ELECTRO TIERRAS</span></p>
 
+							<p>Jefferson Bastias Niño</p>
+
 							<p>Carrera 12 No. 18 &ndash; 44</p>
 
-							<p>Cel. 3158909277 &ndash; 7402181</p>
+							<p>Cel. 3158909277</p>
 
 
 						</div><!-- End .col-lg-9 -->

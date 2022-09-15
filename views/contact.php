@@ -64,17 +64,15 @@
 						<div class="contact-info">
 							<div>
 								<i class="icon-phone"></i>
-								<p><a href="tel:6013906666,1010">601 390 6666 EXT 1010</a></p>
-								<p><a href="tel:6013906666,1013">601 390 6666 EXT 1013</a></p>
+								<p><a href="tel:6013906666,1023">601 390 6666 EXT 1023</a></p>
 							</div>
 							<div>
 								<i class="icon-mobile"></i>
-								<p><a href="tel:+573203487184">320 348 7184</a></p>
+								<p><a href="tel:+573134956505">313 495 65 05</a></p>
 							</div>
 							<div>
 								<i class="icon-mail-alt"></i>
-								<p><a href="mailto:asesor.mostrador4@fenusa.com.co">asesor.mostrador4@fenusa.com.co</a></p>
-								<p><a href="mailto:fenusa@fenusa.com.co">fenusa@fenusa.com.co</a></p>
+								<p><a href="mailto:asistente.comercial5@fenusa.com.co">asistente.comercial5@fenusa.com.co</a></p>
 							</div>
 							<div>
 								<i class="icon-direction"></i>

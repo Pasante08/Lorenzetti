@@ -115,19 +115,18 @@
 
 					<div class="col-lg-4">
 							<div class="cart-summary">
-								<form action="?controller=factura&method=addFac" method="POST" id="frm-fac">
+								<form action="?controller=factura&method=addFac" method="POST" id="frm-fac" autocomplete="off">
 								<h3>Resumen</h3>
 
 								<h4>
 									<a data-toggle="collapse" href="#total-estimate-section" class="collapsed" role="button" aria-expanded="false" aria-controls="total-estimate-section">Datos de envío</a>
 								</h4>
 
-								<div class="collapse" id="total-estimate-section">
-									<!--<form action="#">-->
+								<div class="collapse show" id="total-estimate-section">
 									<div class="form-group form-group-sm">
 										<label>Departamento:</label>
 										<div class="select-custom">
-											<select id="slt-depa" name="slt-depa" class="form-control form-control-sm">
+											<select id="slt-depa" name="slt-depa" class="form-control form-control-sm" required>
 												<option value="" selected>Seleccione...</option>
 												<?php foreach ($departamentos as $depa) : ?>
 													<option value="<?php echo $depa->idDepartamento ?>"><?php echo $depa->nombre ?></option>
@@ -139,15 +138,15 @@
 									<div class="form-group form-group-sm">
 										<label>Municipio:</label>
 										<div class="select-custom">
-											<select id="slt-muni" name="slt-muni" class="form-control form-control-sm">
-
+											<select id="slt-muni" name="slt-muni" class="form-control form-control-sm" required>
+												
 											</select>
 										</div><!-- End .select-custom -->
 									</div><!-- End .form-group -->
 
 									<div class="form-group form-group-sm">
 										<label>Dirección</label>
-										<input id="adress" name="adress" type="text" class="form-control form-control-sm" value="">
+										<input id="adress" name="adress" type="text" class="form-control form-control-sm" value="" required>
 									</div><!-- End .form-group -->
 
 									<div class="form-group form-group-custom-control">
@@ -157,27 +156,26 @@
 									<div class="form-group form-group-custom-control">
 
 									</div><!-- End .form-group -->
-									<!--</form>-->
 								</div><!-- End #total-estimate-section -->
 
 								<h4>
 									<a data-toggle="collapse" href="#total-estimate-section1" class="collapsed" role="button" aria-expanded="false" aria-controls="total-estimate-section">Datos de contacto</a>
 								</h4>
 
-								<div class="collapse" id="total-estimate-section1">
+								<div class="collapse show" id="total-estimate-section1">
 									<div class="form-group form-group-sm">
 										<label>Nombre completo:</label>
-										<input id="cliente" name="cliente" type="text" class="form-control form-control-sm" value="">
+										<input id="cliente" name="cliente" type="text" class="form-control form-control-sm" value="" required>
 									</div>
 
 									<div class="form-group form-group-sm">
 										<label>Correo electrónico:</label>
-										<input id="email" name="email" type="email" class="form-control form-control-sm" value="" require>
+										<input id="email" name="email" type="email" class="form-control form-control-sm" value="" required>
 									</div>
 
 									<div class="form-group form-group-sm">
 										<label>Teléfono</label>
-										<input id="phone" name="phone" type="text" class="form-control form-control-sm" value="">
+										<input id="phone" name="phone" type="text" class="form-control form-control-sm" value="" required>
 									</div>
 								</div>
 
@@ -203,16 +201,7 @@
 										</tr>
 									</tfoot>
 								</table>
-								<!--<form action="https://checkout.wompi.co/p/" method="GET">-->
-									<!-- OBLIGATORIOS -->
-									<!--<input type="hidden" name="public-key" value="pub_test_3rbyR94vJUGFhse3CtlNPeQ3G7Yo3W73" />
-									<input type="hidden" name="currency" value="COP" />
-									<input type="hidden" name="amount-in-cents" id="totalFinal" value="" />
-									<input type="hidden" name="reference" id="reference" value="" />
-									<input type="hidden" name="redirect-url" value="http://localhost/lorenzetti/">
-									<button type="submit" id="checkout-shipping" class="btn btn-block btn-sm btn-danger">Ir a pagar</button>
-								</form>-->
-								<button type="submit" id="checkout-shipping" class="btn btn-block btn-sm btn-danger btn-quickview-product disabled" disabled>Ir a pagar</button>
+								<button type="submit" id="checkout-shipping" class="btn btn-block btn-sm btn-danger btn-quickview-product">Ir a pagar</button>
 								</form>
 							</div><!-- End .cart-summary -->
 					</div><!-- End .col-lg-4 -->
