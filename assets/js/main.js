@@ -11,10 +11,6 @@ $(document).ready(function() {
 
     //Bloqueamos el select de los municipios
     $("#slt-muni").prop('disabled', true);
-    // $("#adress").prop('disabled', true);
-    // $("#cliente").prop('disabled', true);
-    // $("#email").prop('disabled', true);
-    // $("#phone").prop('disabled', true);
 
 
     //Hcaer cambiar el SELECT de valor
@@ -200,9 +196,10 @@ $(document).ready(function() {
         valores = [];
 
         var param = {
-            idCart,
-            quantity
-        }
+                idCart,
+                quantity
+            }
+            //Enviar mas de un parametro
         $.ajax({
             type: "POST",
             url: "?controller=carrito&method=addItemP",
@@ -276,7 +273,7 @@ $(".caxsalls1 li").click(
     }
 );
 
-document.addEventListener("DOMContentLoaded", function() {
+/*document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("frm-fac").addEventListener('submit', validarFormulario);
 });
 
@@ -309,7 +306,7 @@ function validarFormulario(e) {
     } else {
         this.submit();
     }
-}
+}*/
 
 $('#frmcontacto').submit(function(e) {
     $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });

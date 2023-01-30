@@ -81,6 +81,10 @@
 						<input type="text" name="imgxcien" id="imgxcien" class="form-control" value="<?php echo $producto[0]->imgxcien ?>">
 					</div>
 					<div class="form-group">
+						<label for="imgxcien">Precio:</label>
+						<input type="text" name="precio" id="precio" class="form-control" value="<?php echo $producto[0]->precio ?>">
+					</div>
+					<div class="form-group">
 						<button class="btn btn-primary">Editar</button>
 					</div>
 				</form>

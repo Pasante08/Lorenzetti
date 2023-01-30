@@ -50,12 +50,12 @@
 												</td>
 												<td class="product-col">
 													<figure class="product-image-container">
-														<a href="#" class="product-image">
+														<a href="?controller=producto&method=viewProduct&id=<?php echo $producto->idProducto ?>" class="product-image">
 															<img src="<?php echo $producto->ubicacion ?>" alt="product">
 														</a>
 													</figure>
 													<h5 class="product-title">
-														<a href="#"><?php echo $producto->nombre ?> <?php echo $producto->NC ?> <?php echo $producto->NV ?></a>
+														<a href="?controller=producto&method=viewProduct&id=<?php echo $producto->idProducto ?>"><?php echo $producto->nombre ?> <?php echo $producto->NC ?> <?php echo $producto->NV ?></a>
 													</h5>
 												</td>
 												<td class="idProducto" hidden>
@@ -114,14 +114,9 @@
 					</div><!-- End .col-lg-8 -->
 
 					<div class="col-lg-4">
-							<div class="cart-summary">
-								<form action="?controller=factura&method=addFac" method="POST" id="frm-fac" autocomplete="off">
+						<div class="cart-summary">
+							<form action="" method="POST" id="frm-fac" autocomplete="off">
 								<h3>Resumen</h3>
-
-								<h4>
-									<a data-toggle="collapse" href="#total-estimate-section" class="collapsed" role="button" aria-expanded="false" aria-controls="total-estimate-section">Datos de envío</a>
-								</h4>
-
 								<div class="collapse show" id="total-estimate-section">
 									<div class="form-group form-group-sm">
 										<label>Departamento:</label>
@@ -139,43 +134,31 @@
 										<label>Municipio:</label>
 										<div class="select-custom">
 											<select id="slt-muni" name="slt-muni" class="form-control form-control-sm" required>
-												
+
 											</select>
 										</div><!-- End .select-custom -->
 									</div><!-- End .form-group -->
 
 									<div class="form-group form-group-sm">
 										<label>Dirección</label>
-										<input id="adress" name="adress" type="text" class="form-control form-control-sm" value="" required>
-									</div><!-- End .form-group -->
-
-									<div class="form-group form-group-custom-control">
-
-									</div><!-- End .form-group -->
-
-									<div class="form-group form-group-custom-control">
-
+										<input id="adress" name="adress" type="text" class="form-control form-control-sm" value="" placeholder="Ingrese su dirección" required>
 									</div><!-- End .form-group -->
 								</div><!-- End #total-estimate-section -->
-
-								<h4>
-									<a data-toggle="collapse" href="#total-estimate-section1" class="collapsed" role="button" aria-expanded="false" aria-controls="total-estimate-section">Datos de contacto</a>
-								</h4>
 
 								<div class="collapse show" id="total-estimate-section1">
 									<div class="form-group form-group-sm">
 										<label>Nombre completo:</label>
-										<input id="cliente" name="cliente" type="text" class="form-control form-control-sm" value="" required>
+										<input id="cliente" name="cliente" type="text" class="form-control form-control-sm" value="" placeholder="Ingrese su nombre" required>
 									</div>
 
 									<div class="form-group form-group-sm">
 										<label>Correo electrónico:</label>
-										<input id="email" name="email" type="email" class="form-control form-control-sm" value="" required>
+										<input id="email" name="email" type="email" class="form-control form-control-sm" value="" placeholder="Ingrese su correo electrónico" required>
 									</div>
 
 									<div class="form-group form-group-sm">
 										<label>Teléfono</label>
-										<input id="phone" name="phone" type="text" class="form-control form-control-sm" value="" required>
+										<input id="phone" name="phone" type="text" class="form-control form-control-sm" value="" placeholder="Ingrese su numero de teléfono" required>
 									</div>
 								</div>
 
@@ -197,18 +180,97 @@
 											<input type="hidden" id="total" name="total">
 											<td>Total</td>
 											<td>--</td>
-											
+
 										</tr>
 									</tfoot>
 								</table>
 								<button type="submit" id="checkout-shipping" class="btn btn-block btn-sm btn-danger btn-quickview-product">Ir a pagar</button>
-								</form>
-							</div><!-- End .cart-summary -->
+							</form>
+						</div><!-- End .cart-summary -->
 					</div><!-- End .col-lg-4 -->
 				</div><!-- End .row -->
 			</div><!-- End .container -->
 		<?php else : ?>
 		<?php endif ?>
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				document.getElementById("frm-fac").addEventListener('submit', validarFormulario);
+			});
+
+			function validarFormulario(e) {
+				e.preventDefault();
+				if ($('#slt-depa').val() == "") {
+					alert("esta vacio el departamento")
+					return false;
+				} else if ($('#slt-muni').val() == "") {
+					alert("esta vacio el municipio");
+					return false;
+				} else if ($('#adress').val() == "") {
+					alert("esta vacia la dirección")
+					return false;
+				} else if ($('#cliente').val() == "") {
+					alert("esta vacio el nombre del cliente")
+					return false;
+				} else if ($('#email').val() == "") {
+					alert("esta vacio el correo")
+					return false;
+				} else if ($('#phone').val() == "") {
+					alert("esta vacio el teléfono")
+					return false;
+				} else if ($('#vpsi').val() == "") {
+					alert("esta vacio")
+					return false;
+				} else if ($('#total').val() == "") {
+					alert("esta vacio")
+					return false;
+				} else {
+
+					let url = "?controller=factura&method=addFac";
+					var datos = new FormData(document.getElementById("frm-fac"));
+					var monto;
+					fetch(url, {
+						method: "POST",
+						body: datos
+					}).then(function(data) {
+						return data.json();
+					}).then(
+						//response => colsole.log('Success:', response)
+						myJson => {
+							console.log( JSON.stringify(myJson['email'] ))
+							pagar(myJson)
+							//console.log(myJson);
+							//validar(myJson);
+							//let PruebaOtra = JSON.parse(myJson);
+							//monto = JSON.stringify(myJson['monto']);
+							//console.log(monto);
+							//console.log(PruebaOtra);
+						}
+					)
+
+					function pagar(data) {
+						var checkout = new WidgetCheckout({
+							currency: 'COP',
+							amountInCents: JSON.stringify(parseInt(data['total'])),
+							reference: JSON.stringify(data['reference']),
+							publicKey: 'pub_test_3rbyR94vJUGFhse3CtlNPeQ3G7Yo3W73',
+							redirectUrl: 'http://localhost/lorenzetti/?controller=factura&method=mostrarFinish', // Opcional
+							customerData: { // Opcional
+								email: data['email'],
+								fullName: data['name'],
+								phoneNumber: data['phone'],
+								phoneNumberPrefix: '+57',
+							}
+						})
+						checkout.open(function(result) {
+							var transaction = result.transaction
+							console.log('Transaction ID: ', transaction.id)
+							console.log('Transaction object: ', transaction)
+						})
+					}
+					//this.submit();
+				}
+			}
+		</script>
 		<div class="mb-6"></div><!-- margin -->
 	</main><!-- End .main -->
 	<?php require 'templates/footer.php'; ?>

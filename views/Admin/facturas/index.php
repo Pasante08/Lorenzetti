@@ -19,12 +19,10 @@
                                 <td><?php echo $factura->idFactura ?></td>
                                 <td><?php echo $factura->fecha ?></td>
                                 <td><?php echo $factura->refac ?></td>
-                                <!--<td><?php //$factura-> 
-                                        ?></td>-->
                                 <td><?php echo $factura->nombre ?></td>
                                 <td>
-                                    <a href="?controller=factura&method=edit&id=<?php echo $factura->idFactura ?>" class="header-icon"><i class="fas fa-edit"></i></a>
-                                    <a href="?controller=factura&method=viewFac&id=<?php echo $factura->idFactura ?>" class="header-icon"><i class="fas fa-eye"></i></a>
+                                    <a href="?controller=factura&method=edit&id=<?php echo $factura->idFactura ?>" class="header-icon btn"><i class="fas fa-edit"></i></a>
+                                    <a href="?controller=factura&method=viewFac&id=<?php echo $factura->idFactura ?>" class="header-icon btn"><i class="fas fa-eye"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

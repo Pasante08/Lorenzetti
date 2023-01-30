@@ -127,4 +127,14 @@
                 die($e->getMessage());
             }
         }
+
+        public function stockAvailable($id)
+        {
+            try {
+                $strSql = "SELECT unidades FROM productosistema WHERE producto_id = '$id'";
+                return $this->pdo->select($strSql);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
     }

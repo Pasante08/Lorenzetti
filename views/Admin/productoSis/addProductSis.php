@@ -12,6 +12,9 @@
           </div>
         </form>
       </div>
+      <div class="col-md-6 float-left">
+        <a class="btn btn-success" href="?controller=productosis&method=newProduct"><i class="fas fa-plus-circle"></i> Nuevo producto</a>
+      </div>
       <div class="col-6 col-md-6 float-right">
         <div class="header-icon header-icon header-search header-search-inline header-search-category w-lg-max text-left">
           <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
@@ -40,7 +43,7 @@
           </tr>
         </thead>
         <tbody id="content">
-          
+
         </tbody>
       </table>
       <script>
@@ -50,19 +53,19 @@
 
         function getData() {
           let input = document.getElementById("cod").value
-          let content =  document.getElementById("content")
+          let content = document.getElementById("content")
           let url = "?controller=productosis&method=searchCod";
           let formaData = new FormData()
           formaData.append("cod", input)
           console.log(formaData)
 
           fetch(url, {
-            method: "POST",
-            body: formaData
-          }).then(response => response.json())
-          .then(data => {
-            content.innerHTML = data
-          }).catch(err => console.log(err))
+              method: "POST",
+              body: formaData
+            }).then(response => response.json())
+            .then(data => {
+              content.innerHTML = data
+            }).catch(err => console.log(err))
         }
       </script>
     </div>

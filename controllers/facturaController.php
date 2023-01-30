@@ -182,16 +182,21 @@ class facturaController
     {
         if (isset($_POST)) {
             $cliente['nombre'] = $_POST['cliente'];
+            $fact['name'] = $_POST['cliente'];
             $cliente['correo'] = $_POST['email'];
+            $fact['email'] = $_POST['email'];
             $cliente['telefono'] = $_POST['phone'];
+            $fact['phone'] = $_POST['phone'];
             $cliente_id = $this->clienteModel->newClient($cliente);
             $modPago = 1;
             $fecha = date('Y-m-d H:i:s');
             $permitted_chars = '123456789abcdefghijklmnopqrstuvwxyz';
             $reference = substr(str_shuffle($permitted_chars), 0, 10);
+            $fact['reference'] = $reference;
             $departamento_id = $_POST['slt-depa'];
             $municipio_id = $_POST['slt-muni'];
             $direccion = $_POST['adress'];
+            $fact['adress'] = $_POST['adress'];
             $vEnvio = $_POST['tax'];
             $factura = array("fecha" => "$fecha", "cliente_id" => "$cliente_id", "modPago_id" => "$modPago", "refac" => "$reference", "departamento_id" => "$departamento_id", "municipio_id" => "$municipio_id", "direccion" => "$direccion", "vEnvio" => "$vEnvio");
             $factura_id = $this->facturaModel->newFact($factura);
@@ -207,7 +212,10 @@ class facturaController
             }
             $client = $_POST['cliente'];
             $amount_in_cents = $_POST['total'];
-            require 'views/pedido.php';
+            $fact['total'] = $_POST['total'].'00';
+            
+            echo json_encode($fact);
+            //require 'views/pedido.php';
         } else {
             print("No llego");
             die();

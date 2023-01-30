@@ -88,6 +88,21 @@ class productoSisController
         }
     }
 
+    public function newProduct()
+    {
+        $voltajes = $this->voltajeModel->getAll();
+        $colores = $this->colorModel->getAll();
+        $productos = $this->productoModel->getAll();
+        require 'views/Admin/templates/header.php';
+        require 'views/Admin/productoSis/new.php';
+    }
+
+    public function save()
+    {
+        $this->productoSisModel->newProductSystem($_POST);
+		header('Location: ?controller=productosis');
+    }
+
     public function edit()
     {
         if (isset($_REQUEST['id'])) {
@@ -115,8 +130,6 @@ class productoSisController
     public function updateStatus()
     {
         if (isset($_REQUEST)) {
-            // $data['idProducto'] = $_REQUEST['id'];
-            // $data['estado'] = $_REQUEST['S'];
             $this->productoSisModel->updateStatus($_REQUEST['id'], $_REQUEST['S']);
             $productos = $this->productoSisModel->getAll();
             require 'views/Admin/templates/header.php';
@@ -138,6 +151,7 @@ class productoSisController
         }
     }
 
+    //Buscar producto por codigo SAP
     public function searchCod()
     {
         if (isset($_POST)) {
@@ -151,19 +165,42 @@ class productoSisController
                 $html .= '<td>' . $producto->voltaje_id . '</td>';
                 $html .= '<td>' . $producto->color_id . '</td>';
                 $html .= '<td>' . $producto->producto_id . '</td>';
-                $html .= '<td>' .  ($producto->estado).'?"<span style="color:green">Activo</span>" : "<span style="color:red">Inactivo</span>"</td>';
+                if ($producto->estado) {
+                    $html .= '<td><span style="color:green">Activo</span></td>';
+                } else {
+                    $html .= '<td><span style="color:red">Inactivo</span></td>';
+                }
                 $html .= '<td> 
-                    <a href="?controller=productosis&method=edit&id='.$producto->idProducto.'" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                    <a href="?controller=productosis&method=updateStatus&id='.$producto->idProducto.'&S='.$producto->estado.'"</a>
+                    <a href="?controller=productosis&method=edit&id=' . $producto->idProducto . '" class="btn btn-primary"><i class="fas fa-edit"></i></a>';
+                if ($producto->estado) {
+                    $html .= '<a class="btn btn-success" href="?controller=productosis&method=updateStatus&id=' . $producto->idProducto . '&S=' . $producto->estado . '"><i class="fas fa-lock-open"></i></a>';
+                } else {
+                    $html .= '<a class="btn btn-danger" href="?controller=productosis&method=updateStatus&id=' . $producto->idProducto . '&S=' . $producto->estado . '"><i class="fas fa-lock"></i></a>';
+                }
+                '
                 </td>';
                 $html .= '</tr>';
             }
             echo json_encode($html, JSON_UNESCAPED_UNICODE);
-            }
-         else {
+        } else {
             echo 'No existen datos';
             die();
         }
-        
+    }
+
+    public function validateStock()
+    {
+        if (isset($_REQUEST)) {
+            $count = $this->productoSisModel->stockAvailable($_REQUEST['id']);
+            if ($_REQUEST['quantity'] <= $count[0]->unidades) {
+                $response = false;
+            } else {
+                $response = true;
+            }
+            echo $response;
+        } else {
+            echo 'No existen datos';
+            die();
+        }
     }
 }

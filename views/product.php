@@ -84,21 +84,6 @@
 									</div><!-- End .product-desc -->
 
 									<div class="product-filters-container">
-										<!--<div class="product-single-filter">-->
-											<?php //if (isset($colores)) : ?>
-												<!--<label>Colores:</label>
-												<ul class="config-swatch-list caxsalls">
-													<?php //foreach ($colores as $color) : ?>
-														<input type="hidden" value="<?php //echo $color->nombre ?>" name="C_nombre">
-														<input type="text" value="<?php //echo $color->idColor 
-																						?>" name="color_id" id="color_id">-->
-														<!--<a href="#" data-id="<?php //echo $color->idColor ?>"><img src="<?php //echo $color->imgColor ?>" alt="" style="margin-right: 3px;"></a>
-													<?php //endforeach ?>
-													<input type="hidden" class="form-control" name="color_id" id="color_id" value="">
-												</ul>-->
-											<?php //else : ?>
-											<?php //endif ?>
-										<!--</div>--><!-- End .product-single-filter -->
 										<div class="product-single-filter mb-2">
 											<?php if (isset($voltajes)) : ?>
 												<input type="hidden" id="voltaje_id" name="voltaje_id" value="">
@@ -127,6 +112,7 @@
 									<div class="product-action">
 										<div class="product-single-qty">
 											<input class="horizontal-quantity form-control" type="text" name="quantity" id="quantity">
+											<div id="required_quantity" class="required text-left" hidden>Seleccione menos cantidad</div>
 										</div><!-- End .product-single-qty -->
 
 										<input type="submit" class="btn btn-danger add-cart icon-shopping-cart" id="btn-submit" value="Añadir al carrito">
@@ -138,9 +124,9 @@
 										<label class="sr-only">Share:</label>
 
 										<div class="social-icons mr-2">
-											<a href="#" class="social-icon social-whatsapp icon-whatsapp" title="WhatsApp"></a>
-											<a href="#" class="social-icon social-facebook icon-facebook" title="Facebook"></a>
-											<a href="#" class="social-icon social-mail icon-mail-alt" title="Mail"></a>
+											<a href="https://api.whatsapp.com/send?phone=573134956505" class="social-icon social-whatsapp icon-whatsapp" title="WhatsApp"></a>
+											<a href="https://www.facebook.com/profile.php?id=100085574533222" class="social-icon social-facebook icon-facebook" title="Facebook" target="_blank"></a>
+											<a href="mailto:fenusa@fenusa.com.co" class="social-icon social-mail icon-mail-alt" title="Email"></a>
 										</div><!-- End .social-icons -->
 
 									</div><!-- End .product single-share -->
@@ -154,13 +140,7 @@
 										<li class="nav-item">
 											<a class="nav-link active" id="product-tab-desc" data-toggle="tab" href="#product-desc-content" role="tab" aria-controls="product-desc-content" aria-selected="true">Descripción</a>
 										</li>
-										<!--<li class="nav-item">
-										<a class="nav-link active" id="product-tab-more-info" data-toggle="tab" href="#product-more-info-content" role="tab" aria-controls="product-more-info-content" aria-selected="false">MAS INFORMACIÓN</a>
-									</li>-->
 									<?php else : ?>
-										<!--<li class="nav-item">
-											<a class="nav-link active" id="product-tab-more-info" data-toggle="tab" href="#product-more-info-content" role="tab" aria-controls="product-more-info-content" aria-selected="false">More Info</a>
-										</li>-->
 									<?php endif ?>
 								</ul>
 								<div class="tab-content">

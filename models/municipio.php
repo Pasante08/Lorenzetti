@@ -45,6 +45,17 @@
             }
         }
 
+        public function editMunicipio($data)
+        {
+            try {
+				$strWhere = 'idMunicipio ='. $data['idMunicipio'];
+				$table = 'municipios';
+				$this->pdo->update($table, $data, $strWhere);
+			} catch (PDOException $e) {
+				die($e->getMessage());
+			}
+        }
+
         public function listByDepa($id)
         {
             try {
@@ -54,6 +65,16 @@
                     WHERE d.idDepartamento=:id ORDER BY d.nombre, m.nombre";
                 $arrayData = ['id' => $id];
                 return $this->pdo->selectfetch($strSql, $arrayData);
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+
+        public function searchNombre($name)
+        {
+            try {
+                $strSql = "SELECT * FROM municipios WHERE nombre LIKE '%$name%'";
+                return $this->pdo->select($strSql);
             } catch (PDOException $e) {
                 die($e->getMessage());
             }

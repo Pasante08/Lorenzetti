@@ -105,7 +105,7 @@
         </div><!-- End .mobile-menu-wrapper -->
     </div><!-- End .mobile-menu-container -->
 
-    <!--<div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background-image: url(assets/images/newsletter_popup_bg.jpg)">
+    <!-- <div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background-image: url(assets/images/newsletter_popup_bg.jpg)">
         <div class="newsletter-popup-content">
             <img src="assets/images/logo-black.png" alt="Logo" class="logo-newsletter">
             <h2>BE THE FIRST TO KNOW</h2>
@@ -114,7 +114,7 @@
                 <div class="input-group">
                     <input type="email" class="form-control" id="newsletter-email" name="newsletter-email" placeholder="Email address" required>
                     <input type="submit" class="btn" value="Go!">
-                </div>-->
+                </div>
     <!-- End .from-group -->
     <!--</form>
             <div class="newsletter-subscribe">
@@ -127,7 +127,7 @@
             </div>
         </div>-->
     <!-- End .newsletter-popup-content -->
-    <!--</div>-->
+    <!--</div> -->
     <!-- End .newsletter-popup -->
     <!-- Add Cart Modal -->
     <div class="modal fade" id="addCartModal" tabindex="-1" role="dialog" aria-labelledby="addCartModal" aria-hidden="true">

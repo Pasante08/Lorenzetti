@@ -22,7 +22,6 @@ class productoController
 
     public function Index()
     {
-        $productos = $this->productoModel->getAll();
         $products_Dest = $this->productoModel->productsDes();
         require 'views/index.php';
     }
@@ -32,6 +31,13 @@ class productoController
         $productos = $this->productoModel->getAllStatus();
         require 'views/Admin/templates/header.php';
         require 'views/Admin/producto/addProduct.php';
+    }
+
+    public function newProduct()
+    {
+        $categorias = $this->categoriaModel->getAll();
+        require 'views/Admin/templates/header.php';
+        require 'views/Admin/producto/new.php';
     }
 
     public function getAll()
@@ -155,19 +161,32 @@ class productoController
 
         }
     }
+
+    public function save()
+    {
+        if(isset($_POST)){
+            $img = $_POST['imagen'];
+            print_r($_POST['precio']);
+            print(' - ');
+            $preiva = $_POST['precio'] * 1.19;
+            print_r(round($preiva, -2));
+            print(' - ');
+            print_r(number_format($_POST['precio']));
+            die();
+            $_POST['ubicacion'] = "assets/images/products/$img";
+            $_POST['imgxcien'] = "assets/images/products/zoom/$img";
+            $this->productoModel->newProduct($_POST);
+            $productos = $this->productoModel->getAllStatus();
+            require 'views/Admin/templates/header.php';
+            require 'views/Admin/producto/addProduct.php';
+        } else {
+            echo 'No se envio nada';
+        }
+    }
     
     public function productView()
     {
         if(isset($_REQUEST['id'])) {
-            /*$product = $this->productoModel->getById($_REQUEST['id']);
-            if($product[0]->voltaje != null) {
-                $voltajes = $this->productoModel->filtros($_REQUEST['id'], 'voltaje');
-            }
-            if($product[0]->color != null) {
-                $colores = $this->productoModel->filtros($_REQUEST['id'], 'color');
-            }*/
-            /*print_R($colores);
-            die();*/
             require 'views/ajax/product-quick-view.php';
         } else {
             
