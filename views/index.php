@@ -18,15 +18,17 @@
 <body>
     <?php require 'templates/header.php'; ?>
     <main class="main">
-        <div class="home-slider owl-carousel owl-theme show-nav-hover nav-big">
+        <div class="home-slider owl-carousel owl-theme show-nav-hover nav-big" data-owl-options="{
+				'loop': true, 'autoplay':true
+			}">
             <div class="home-slide home-slide1 banner">
                 <img class="slide-bg owl-lazy" src="assets/images/lazy.png" data-src="assets/images/slider/Banner_lorenzetti.jpg" alt="home banner">
             </div>
             <!-- End .home-slide -->
-            <div class="home-slide home-slide1 banner">
+            <div class="home-slide home-slide2 banner">
                 <img class="slide-bg owl-lazy" src="assets/images/lazy.png" data-src="assets/images/slider/Banner_lorenzetti_2.jpg" alt="home banner">
             </div>
-            <div class="home-slide home-slide2 banner">
+            <div class="home-slide home-slide3 banner">
                 <img class="slide-bg owl-lazy" src="assets/images/lazy.png" data-src="assets/images/slider/Banner_lorenzetti_1.jpg" alt="home banner">
                 </div>
                 <!-- End .banner-layer -->
@@ -109,18 +111,18 @@
             
         </section>
     </main>
-    <div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background-image: url(assets/images/prueba.png)">
-        <div class="newsletter-popup-content">
-            <img src="assets/images/logo-black.png" alt="Logo" class="logo-newsletter">
+    <div class="newsletter-popup mfp-hide" id="newsletter-popup-form" style="background-image: url(assets/images/pop-up.png)">
+         <!--<div class="newsletter-popup-content">
+            <img src="" alt="Logo" class="logo-newsletter">
             <h2>BE THE FIRST TO KNOW</h2>
             <p>Subscribe to the Porto eCommerce newsletter to receive timely updates from your favorite products.</p>
             <form action="#">
                 <div class="input-group">
                     <input type="email" class="form-control" id="newsletter-email" name="newsletter-email" placeholder="Email address" required>
                     <input type="submit" class="btn" value="Go!">
-                </div>
+                </div>-->
     <!-- End .from-group -->
-    </form>
+    <!--</form>
             <div class="newsletter-subscribe">
                 <div class="checkbox">
                     <label>
@@ -129,7 +131,7 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </div>-->
     <!-- End .newsletter-popup-content -->
     </div>
     <?php require 'templates/footer.php'; ?>

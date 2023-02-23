@@ -25,7 +25,7 @@
                                     <div class="social-icons">
                                         <a href="#" class="social-icon social-facebook icon-facebook"></a>
                                         <a href="#" class="social-icon social-twitter icon-twitter"></a>
-                                        <a href="#" class="social-icon social-linkedin fab fa-linkedin-in"></a>
+                                        <a href="#" class="social-icon social-instagram icon-instagram"></a>
                                     </div>
 
                                 </div><!-- End .widget -->
