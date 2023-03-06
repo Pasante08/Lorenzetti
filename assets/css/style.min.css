@@ -5900,9 +5900,9 @@ span.page-link,
 
 .social-icon.social-instagram {
     /*background-image: linear-gradient(155deg, #4C57A2 8%, #87439A 50%, #e02870 85%);*/
-    background: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, 9b36b7 85%, #515ecf)
+    /*background: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, 9b36b7 85%, #515ecf)*/
     /*background: radial-gradient(rgba(246, 221, 132, 1) 15%, rgba(255, 45, 45, 0.65) 50%, rgba(0, 0, 0, 0) 70%);*/
-    /*background-color: #7c4a3a*/
+    background-color: #7c4a3a
 }
 
 .social-icon.social-linkedin {

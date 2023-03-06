@@ -5980,11 +5980,10 @@ span.page-link,
     background-color: #1aa9e1;
 }
 
-
-/*.social-icon.social-instagram {
-    background: radial-gradient(rgba(246, 221, 132, 1) 15%, rgba(255, 45, 45, 0.65) 50%, rgba(0, 0, 0, 0) 70%);
-    background-color: #7c4a3a;
-}*/
+.social-icon.social-instagram {
+    /*background: radial-gradient(rgba(246, 221, 132, 1) 15%, rgba(255, 45, 45, 0.65) 50%, rgba(0, 0, 0, 0) 70%);*/
+    background-color: #7c4a3a
+}
 
 .social-icon.social-linkedin {
     background-color: #0073b2;
